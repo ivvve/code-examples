@@ -1,18 +1,16 @@
 # AdminBro로 Nest.js admin 쉽게 만들기
 
+
 개발을 할 때 따로 Admin 까지 개발해야한다는 것은 할 일이 많은 개발자들에게 부담이 되곤 하는데, Django framework 같은 경우 강력한 [admin site](https://docs.djangoproject.com/en/3.1/ref/contrib/admin/) 기능을 제공하여 개발자들의 부담을 줄여준다.
 
 우연히 [AdminBro](https://softwarebrothers.github.io/admin-bro-dev/)라는 Node.js 애플리케이션용 어드민 자동화 툴을 발견하였는데,
-기존에 존재하는 Node.js framework와도 연동이 가능하기 때문에 Production 환경에서도 충분히 쓸만한 훌륭한 툴인 것 같아서 AdminBro에 대해 좀 더  찾아보았다.
+기존에 존재하는 Node.js framework와도 연동이 가능하기 때문에 Production 환경에서도 충분히 쓸만한 훌륭한 툴인 것 같아서 AdminBro에 대해 좀 더 찾아보았다.
 
-![](2020-09-13-12-00-22.png)
-https://adminbro.com/tutorial-installation-instructions.html
+![](./images/nestjs-admin-bro-01.png)
 
-> An Auto-generated Admin Panel for your Node.js Application
+특히 Express plugin을 지원하기 때문에 Express를 기본으로 HTTP Server framework으로 사용하는 [Nest.js](https://nestjs.com/)와도 조합하여 사용할 수 있지 않을까라는 호기심으로 여러가지 설정을 해보았는데 Nest.js와도 연동하여 사용할 수 있어서 관련해서 정리할 겸 정리하는 포스팅을 쓴다.
 
-특히 Express plugin을 지원하기 때문에 Express를 기본으로 HTTP Server framework으로 사용하는 Nest.js와도 조합하여 사용할 수 있지 않을까라는 호기심으로 여러가지 설정을 해보았는데 Nest.js와도 연동하여 사용할 수 있어서 관련해서 정리할 겸 정리하는 포스팅을 쓴다.
-
-**해당 코드는()**
+**해당 코드는 [Github repository](https://github.com/ivvve/code-examples/tree/master/nestjs-admin-bro)에서 확인 가능하다**
 
 ---
 
@@ -20,11 +18,13 @@ https://adminbro.com/tutorial-installation-instructions.html
 
 먼저 Nest.js를 AdminBro에 연결시켜 보자.
 
-(AdminBro에서 만든 [admin-bro/nest.js module](https://adminbro.com/module-@admin-bro_nestjs.html)도 있긴한데 아직 1.0.0 버전이고 document에 있는데로 하면 오류가 나는지라 해당 모듈은 사용하지 않도록 하겠다.)
+(AdminBro에서 만든 [admin-bro/nest.js module](https://adminbro.com/module-@admin-bro_nestjs.html)도 있긴하지만 아직 1.0.0 버전이기도하고 document에 있는데로 하면 오류가 나기 때문에 해당 모듈은 사용하지 않도록 하겠다)
+
+예제는 `nestjs-admin-bro`라는 프로젝트를 만들어서 이를 기반으로 진행하겠다.
 
 ### Nest.js 애플리케이션 생성
 
-나는 `nestjs-admin-bro`라는 프로젝트에서 해당 예제를 진행하기 위해 `nestjs-admin-bro` Nest.js 프로젝트를 만들도록 하겠다.
+먼저 `nestjs-admin-bro` Nest.js 프로젝트를 만든다.
 
 ```bash
 # nest cli를 사용하여 프로젝트 생성
@@ -43,23 +43,21 @@ $ cd nestjs-admin-bro
 $ npm i admin-bro @admin-bro/express express-formidable
 ```
 
-Nest.js의 내부 웹 서버 framework는 Express를 사용하기 때문에
-
-![](2020-09-13-10-45-36.png)
-
+Nest.js의 내부 웹 서버 framework는 **Express**를 사용하기 때문에
 위와 같이 AdminBro Express plugin을 설치한다.
 
+![](./images/nestjs-admin-bro-02.png)
+
 ---
 
-AdminBro는 현재는 Fastify를 지원하지 않는다고 한다.
-
-![](2020-09-13-17-20-03.png)
-
+참고로 AdminBro는 현재 **Fastify**를 지원하지 않는다고 한다.
 https://adminbro.com/module-@admin-bro_nestjs.html
 
+![](./images/nestjs-admin-bro-03.png)
+
 ---
 
-이제 AdminBro Admin Panel을 실행하기 위해 다음과 같이 새로 ts 파일을 생성한다.
+이제 AdminBro Admin을 실행하기 위해 다음과 같이 새로 `admin.ts` 파일을 생성한다.
 
 ```ts
 // src/admin.ts
@@ -109,9 +107,9 @@ runAdmin();
 }
 ```
 
-(Admin 페이지라 ts-node로 간단하게 실행하도록 지정하였다.)
+(Admin 페이지라 **ts-node**로 간단하게 실행하도록 지정하였다.)
 
-스크립트를 추가 한뒤 스크립트를 실행시키면 App이 실행된다.
+스크립트를 추가한 뒤 스크립트를 실행시키면 App이 실행된다.
 
 ```bash
 $ npm run start:admin
@@ -128,11 +126,11 @@ AdminBro: bundle ready
 Nest.js AdminBro is running on 3000
 ```
 
-http://localhost:3000 에 접속하면 다음과 같이 AdminBro가 세팅된 것을 확인할 수 있다.
+http://localhost:3000/admin 에 접속하면 다음과 같이 AdminBro가 세팅된 것을 확인할 수 있다.
 
-![](2020-09-13-10-41-36.png)
+![](./images/nestjs-admin-bro-04.png)
 
-기본적인 설정은 되었고 이제 Admin에서 쓸모있는 기능을 사용할 수 있도록 DB 모듈과 연동시켜보자.
+기본적인 설정은 되었고 이제 Admin에서 데이터를 관리할 수 있도록 DB 모듈과 연동시켜보자.
 
 ## Nest.js TypeORM과 AdminBro 연동하기
 
@@ -140,7 +138,7 @@ http://localhost:3000 에 접속하면 다음과 같이 AdminBro가 세팅된 �
 
 기본적인 세팅을 위해서 다음과 같이 프로젝트 생성시에 같이 생성된 **app.controller.ts**, **app.controller.spec.ts**, **app.service.ts** 파일을 지우고 `src/user` 디렉토리를 생성한다.
 
-![](2020-09-13-12-03-13.png)
+![](./images/nestjs-admin-bro-05.png)
 
 ### User Module 세팅하기
 
@@ -251,23 +249,19 @@ runAdmin();
 
 ### Admin 확인
 
-다시 앱을 실행 후 admin 페이지로 접속해보면 새로 리소스가 추가된 것을 확인할 수 있다.
+다시 앱을 실행 후 admin 페이지로 접속해보면 좌측 상단이 햄버거 버튼을 누르면 새로 `User` 리소스가 추가된 것을 확인할 수 있다.
 
 ```bash
-npm run start:admin
+$ npm run start:admin
 ```
 
-![](2020-09-13-12-06-03.png)
+![](./images/nestjs-admin-bro-06.png)
 
-`User` 탭을 클릭해서 `User` 데이터를 확인하고 GUI로 데이터를 쉽게 관리할 수 있다.
+`User`를 클릭해서 들어가보면 GUI로 쉽게 데이터를 관리할 수 있게 AdminBro에서 페이지를 자동으로 만들어준다.
 
-![](2020-09-13-12-06-23.png)
+![](./images/nestjs-admin-bro-07.png)
 
-![](2020-09-13-12-06-48.png)
-
-![](2020-09-13-12-06-56.png)
-
-![](2020-09-13-12-07-08.png)
+![](./images/nestjs-admin-bro-08.png)
 
 지금까지 AdminBro에 TypeORM을 연동하는 것을 살펴봤다.
 
@@ -282,13 +276,13 @@ npm run start:admin
 
 `Board Module` 생성을 위해 다음과 같이 먼저 `board` 디렉토리를 만들도록 한다.
 
-![](2020-09-13-12-07-56.png)
+![](./images/nestjs-admin-bro-09.png)
 
-그리고 Nest.js Mongoose Module을 사용하기 위해 npm 패키지를 추가하자해
+그리고 Nest.js Mongoose Module을 사용하기 위해 npm 패키지를 추가하자
 
 ```bash
-npm i mongoose @nestjs/mongoose @typegoose/typegoose
-npm i -D @types/mongoose
+$ npm i mongoose @nestjs/mongoose @typegoose/typegoose
+$ npm i -D @types/mongoose
 ```
 
 그리고 Board entity를 추가한다.
@@ -351,7 +345,6 @@ $ npm i @admin-bro/mongoose
 
 그리고 admin.ts에 Mongoose 설정을 추가하자.
 
-
 ```ts
 import AdminBro from 'admin-bro';
 import * as AdminBroExpress from '@admin-bro/express';
@@ -403,8 +396,16 @@ const boardModel = app.get('BoardModel');
 ### Admin 확인
 
 앱을 다시 실행 후 admin에 접속하면 `Board`라는 새로운 리소스가 추가된 것을 확인할 수 있다.
-**Playground** 하위에 추가된 것은 TypeORM에 사용한 RDB DB와 Mongoose에 사용한 MongoDB DB가 동일하기 때문이다.
 
+![](./images/nestjs-admin-bro-10.png)
+
+**Playground** 하위에 추가된 것은 TypeORM에 사용한 RDB DB와 Mongoose에 사용한 MongoDB DB가 동일하기 때문이다.
 다른 DB명을 사용하면 서로 분리된다.
 
+![](./images/nestjs-admin-bro-11.png)
+
 새로 추가된 Board도 GUI를 통해 쉽게 데이터를 관리할 수 있다.
+
+![](./images/nestjs-admin-bro-12.png)
+
+![](./images/nestjs-admin-bro-13.png)
