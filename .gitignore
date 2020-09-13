@@ -1,0 +1,8 @@
+# node.js dependencies
+node_modules
+
+# compiled ts files
+dist
+
+# IDE
+.idea
