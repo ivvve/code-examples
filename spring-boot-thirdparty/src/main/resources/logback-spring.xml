@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration>
+    <include resource="org/springframework/boot/logging/logback/base.xml"/>
+
+    <!-- Appenders -->
+    <appender name="Console" class="ch.qos.logback.core.ConsoleAppender">
+        <encoder>
+            <!-- Spring's Console Log Pattern -->
+            <pattern>CONSOLE: ${CONSOLE_LOG_PATTERN}</pattern>
+        </encoder>
+    </appender>
+
+    <appender name="Sentry" class="io.sentry.logback.SentryAppender">
+        <filter class="ch.qos.logback.classic.filter.ThresholdFilter">
+            <level>WARN</level>
+        </filter>
+        <encoder>
+            <!-- Spring's Console Log Pattern -->
+            <pattern>SENTRY: ${CONSOLE_LOG_PATTERN}</pattern>
+        </encoder>
+    </appender>
+
+    <!-- Loggers with Profile -->
+    <springProfile name="local">
+        <logger name="io.github.ivvve.thirdparty" level="DEBUG" additivity="false">
+            <appender-ref ref="Console"/>
+        </logger>
+    </springProfile>
+
+    <springProfile name="dev">
+        <logger name="io.github.ivvve.thirdparty" level="DEBUG" additivity="false">
+            <appender-ref ref="Console"/>
+            <appender-ref ref="Sentry"/>
+        </logger>
+    </springProfile>
+
+    <springProfile name="qa">
+        <logger name="io.github.ivvve.thirdparty" level="INFO" additivity="false">
+            <appender-ref ref="Console"/>
+            <appender-ref ref="Sentry"/>
+        </logger>
+    </springProfile>
+
+    <springProfile name="stage">
+        <logger name="io.github.ivvve.thirdparty" level="WARN" additivity="false">
+            <appender-ref ref="Sentry"/>
+        </logger>
+    </springProfile>
+
+    <springProfile name="prod">
+        <logger name="io.github.ivvve.thirdparty" level="WARN" additivity="false">
+            <appender-ref ref="Sentry"/>
+        </logger>
+    </springProfile>
+</configuration>

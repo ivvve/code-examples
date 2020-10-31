@@ -1,0 +1,12 @@
+spring:
+  cloud:
+    vault:
+      enabled: false
+      token: 00000000-0000-0000-0000-000000000000
+      scheme: http
+      host: localhost
+      port: 8200
+      kv:
+        enabled: true
+        backend: secret
+        default-context: local

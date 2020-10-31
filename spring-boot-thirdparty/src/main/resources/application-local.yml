@@ -1,0 +1,16 @@
+sentry:
+  enabled: false
+  dsn: your dsn
+  stacktrace:
+    app-packages:
+      - io.github.ivvve.thirdparty
+
+management:
+  metrics:
+    export:
+      datadog:
+        enabled: false
+        api-key: your api key
+        application-key: your application key
+        host-tag: hostTag
+        step: PT10S
