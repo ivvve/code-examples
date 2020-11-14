@@ -1,3 +1,4 @@
 rootProject.name = "mm"
 
-include("api")
+include(":api")
+include(":common-utils")

@@ -7,8 +7,6 @@ plugins {
     kotlin("plugin.spring") version "1.4.10"
 }
 
-group = "io.github.ivvve"
-version = "0.0.1-SNAPSHOT"
 java.sourceCompatibility = JavaVersion.VERSION_11
 
 configurations {
@@ -17,13 +15,18 @@ configurations {
     }
 }
 
-subprojects {
-    apply(plugin = "org.jetbrains.kotlin.jvm")
-    apply(plugin = "io.spring.dependency-management")
+allprojects {
+    group = "io.github.ivvve"
+    version = "0.0.1-SNAPSHOT"
 
     repositories {
         mavenCentral()
     }
+}
+
+subprojects {
+    apply(plugin = "org.jetbrains.kotlin.jvm")
+    apply(plugin = "io.spring.dependency-management")
 
     tasks.withType<Test> {
         useJUnitPlatform()
@@ -48,4 +51,3 @@ subprojects {
         testImplementation("org.springframework.boot:spring-boot-starter-test")
     }
 }
-
