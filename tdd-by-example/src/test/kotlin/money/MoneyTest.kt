@@ -6,8 +6,12 @@ import org.junit.jupiter.api.Test
 class MoneyTest {
     @Test
     fun testMultiplication() {
-        val dollar = Dollar(5)
-        dollar.times(2)
-        assertThat(dollar.amount)
+        val five = Dollar(5)
+
+        var product = five.times(2)
+        assertThat(product.amount).isEqualTo(10)
+
+        product = five.times(3)
+        assertThat(product.amount).isEqualTo(15)
     }
 }
