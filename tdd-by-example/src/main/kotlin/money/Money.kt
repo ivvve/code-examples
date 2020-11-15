@@ -1,6 +1,6 @@
 package money
 
-class Dollar(var amount: Int) {
+class Dollar(private val amount: Int) {
     fun times(n: Int): Dollar {
         return Dollar(this.amount * n)
     }
