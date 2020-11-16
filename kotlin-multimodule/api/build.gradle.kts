@@ -6,6 +6,7 @@ plugins {
 }
 
 dependencies {
+    implementation(project(":domain-user"))
     implementation(project(":common-utils"))
 
     implementation(kotlin("stdlib-jdk8"))

@@ -14,3 +14,13 @@ dependencies {
     implementation("org.springframework.boot:spring-boot-starter-data-jdbc")
     runtimeOnly("com.h2database:h2")
 }
+
+tasks {
+    withType<org.springframework.boot.gradle.tasks.bundling.BootJar> {
+        enabled = false
+    }
+
+    withType<Jar> {
+        enabled = true
+    }
+}
