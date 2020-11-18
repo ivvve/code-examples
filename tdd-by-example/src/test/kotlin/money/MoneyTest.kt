@@ -18,6 +18,7 @@ class MoneyTest {
         assertThat(Dollar(5)).isNotEqualTo(Dollar(6))
         assertThat(Franc(5)).isEqualTo(Franc(5))
         assertThat(Franc(5)).isNotEqualTo(Franc(6))
+        assertThat(Franc(5)).isNotEqualTo(Dollar(5))
     }
 
     @Test
