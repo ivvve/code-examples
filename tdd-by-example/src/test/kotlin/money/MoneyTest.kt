@@ -16,6 +16,8 @@ class MoneyTest {
     fun testEquality() {
         assertThat(Dollar(5)).isEqualTo(Dollar(5))
         assertThat(Dollar(5)).isNotEqualTo(Dollar(6))
+        assertThat(Franc(5)).isEqualTo(Franc(5))
+        assertThat(Franc(5)).isNotEqualTo(Franc(6))
     }
 
     @Test
