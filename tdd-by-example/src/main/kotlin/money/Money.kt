@@ -1,17 +1,11 @@
 package money
 
-open class Money
-
-class Dollar(private val amount: Int): Money() {
-    fun times(multiplier: Int): Dollar {
-        return Dollar(this.amount * multiplier)
-    }
-
+open class Money(protected val amount: Int) {
     override fun equals(other: Any?): Boolean {
         if (this === other) return true
         if (javaClass != other?.javaClass) return false
 
-        other as Dollar
+        other as Money
 
         if (amount != other.amount) return false
 
@@ -20,6 +14,12 @@ class Dollar(private val amount: Int): Money() {
 
     override fun hashCode(): Int {
         return amount
+    }
+}
+
+class Dollar(amount: Int): Money(amount) {
+    fun times(multiplier: Int): Dollar {
+        return Dollar(this.amount * multiplier)
     }
 }
 
