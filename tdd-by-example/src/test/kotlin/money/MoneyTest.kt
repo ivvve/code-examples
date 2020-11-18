@@ -10,10 +10,10 @@ class MoneyTest {
         val dollar = Dollar(5)
 
         var product = dollar.times(2)
-        assertThat(product.amount).isEqualTo(10)
+        assertThat(product).isEqualTo(Dollar(10))
 
         product = dollar.times(3)
-        assertThat(product.amount).isEqualTo(15)
+        assertThat(product).isEqualTo(Dollar(15))
     }
 
     @Test
