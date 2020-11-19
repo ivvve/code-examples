@@ -35,12 +35,12 @@ abstract class Money(protected val amount: Int, protected val currency: String) 
 
 class Dollar(amount: Int, currency: String): Money(amount, currency) {
     override fun times(multiplier: Int): Money {
-        return dollar(this.amount * multiplier)
+        return Dollar(this.amount * multiplier, currency)
     }
 }
 
 class Franc(amount: Int, currency: String): Money(amount, currency) {
     override fun times(multiplier: Int): Money {
-        return franc(this.amount * multiplier)
+        return Franc(this.amount * multiplier, currency)
     }
 }
