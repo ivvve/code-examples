@@ -27,4 +27,10 @@ class MoneyTest {
         assertThat(franc.times(2)).isEqualTo(Money.franc(10))
         assertThat(franc.times(3)).isEqualTo(Money.franc(15))
     }
+
+    @Test
+    fun testCurrency() {
+        assertThat("USD").isEqualTo(Money.dollar(1).currency())
+        assertThat("CHF").isEqualTo(Money.franc(1).currency())
+    }
 }
