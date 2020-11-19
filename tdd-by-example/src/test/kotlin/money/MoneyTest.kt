@@ -20,11 +20,6 @@ class MoneyTest {
     }
 
     @Test
-    fun testDifferentClassEquality() {
-        assertThat(Money(10, "CHF")).isEqualTo(Franc(10, "CHF"))
-    }
-
-    @Test
     fun testFrancMultiplication() {
         val franc = Money.franc(5)
         assertThat(franc.times(2)).isEqualTo(Money.franc(10))

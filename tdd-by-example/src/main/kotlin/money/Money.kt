@@ -7,7 +7,7 @@ open class Money(protected val amount: Int, protected val currency: String) {
         }
 
         fun franc(amount: Int): Money {
-            return Franc(amount, "CHF")
+            return Money(amount, "CHF")
         }
     }
 
@@ -35,7 +35,4 @@ open class Money(protected val amount: Int, protected val currency: String) {
         result = 31 * result + currency.hashCode()
         return result
     }
-}
-
-class Franc(amount: Int, currency: String): Money(amount, currency) {
 }
