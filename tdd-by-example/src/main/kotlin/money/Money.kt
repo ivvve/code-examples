@@ -18,13 +18,13 @@ open class Money(protected val amount: Int) {
 }
 
 class Dollar(amount: Int): Money(amount) {
-    fun times(multiplier: Int): Dollar {
+    fun times(multiplier: Int): Money {
         return Dollar(this.amount * multiplier)
     }
 }
 
 class Franc(amount: Int): Money(amount) {
-    fun times(multiplier: Int): Franc {
+    fun times(multiplier: Int): Money {
         return Franc(this.amount * multiplier)
     }
 }
