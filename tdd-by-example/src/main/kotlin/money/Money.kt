@@ -12,7 +12,7 @@ open class Money(protected val amount: Int, protected val currency: String) {
     }
 
     open fun times(multiplier: Int): Money {
-        return null!!
+        return Money(this.amount * multiplier, currency)
     }
 
     fun currency(): String {
@@ -35,18 +35,10 @@ open class Money(protected val amount: Int, protected val currency: String) {
         result = 31 * result + currency.hashCode()
         return result
     }
-
-
 }
 
 class Dollar(amount: Int, currency: String): Money(amount, currency) {
-    override fun times(multiplier: Int): Money {
-        return Money(this.amount * multiplier, currency)
-    }
 }
 
 class Franc(amount: Int, currency: String): Money(amount, currency) {
-    override fun times(multiplier: Int): Money {
-        return Franc(this.amount * multiplier, currency)
-    }
 }
