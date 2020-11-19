@@ -7,7 +7,7 @@ class MoneyTest {
 
     @Test
     fun testMultiplication() {
-        val dollar = Dollar(5)
+        val dollar = Money.dollar(5)
         assertThat(dollar.times(2)).isEqualTo(Dollar(10))
         assertThat(dollar.times(3)).isEqualTo(Dollar(15))
     }

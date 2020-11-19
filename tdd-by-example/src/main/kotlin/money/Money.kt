@@ -1,6 +1,12 @@
 package money
 
 open class Money(protected val amount: Int) {
+    companion object {
+        fun dollar(amount: Int): Money {
+            return Dollar(amount)
+        }
+    }
+
     override fun equals(other: Any?): Boolean {
         if (this === other) return true
         if (javaClass != other?.javaClass) return false
