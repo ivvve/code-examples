@@ -1,13 +1,13 @@
 package money
 
-abstract class Money(protected val amount: Int) {
+abstract class Money(protected val amount: Int, protected val currency: String) {
     companion object {
         fun dollar(amount: Int): Money {
-            return Dollar(amount)
+            return Dollar(amount, "USD")
         }
 
         fun franc(amount: Int): Money {
-            return Franc(amount)
+            return Franc(amount, "CHF")
         }
     }
 
@@ -30,22 +30,22 @@ abstract class Money(protected val amount: Int) {
     }
 }
 
-class Dollar(amount: Int): Money(amount) {
+class Dollar(amount: Int, currency: String): Money(amount, currency) {
     override fun times(multiplier: Int): Money {
-        return Dollar(this.amount * multiplier)
+        return Dollar(this.amount * multiplier, currency)
     }
 
     override fun currency(): String {
-        return "USD"
+        return this.currency
     }
 }
 
-class Franc(amount: Int): Money(amount) {
+class Franc(amount: Int, currency: String): Money(amount, currency) {
     override fun times(multiplier: Int): Money {
-        return Franc(this.amount * multiplier)
+        return Franc(this.amount * multiplier, currency)
     }
 
     override fun currency(): String {
-        return "CHF"
+        return this.currency
     }
 }
