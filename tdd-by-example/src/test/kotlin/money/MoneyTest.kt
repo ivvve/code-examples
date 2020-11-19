@@ -16,15 +16,15 @@ class MoneyTest {
     fun testEquality() {
         assertThat(Money.dollar(5)).isEqualTo(Money.dollar(5))
         assertThat(Money.dollar(5)).isNotEqualTo(Money.dollar(6))
-        assertThat(Franc(5)).isEqualTo(Franc(5))
-        assertThat(Franc(5)).isNotEqualTo(Franc(6))
-        assertThat(Franc(5)).isNotEqualTo(Money.dollar(5))
+        assertThat(Money.franc(5)).isEqualTo(Money.franc(5))
+        assertThat(Money.franc(5)).isNotEqualTo(Money.franc(6))
+        assertThat(Money.franc(5)).isNotEqualTo(Money.dollar(5))
     }
 
     @Test
     fun testFrancMultiplication() {
-        val franc = Franc(5)
-        assertThat(franc.times(2)).isEqualTo(Franc(10))
-        assertThat(franc.times(3)).isEqualTo(Franc(15))
+        val franc = Money.franc(5)
+        assertThat(franc.times(2)).isEqualTo(Money.franc(10))
+        assertThat(franc.times(3)).isEqualTo(Money.franc(15))
     }
 }
