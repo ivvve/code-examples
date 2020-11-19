@@ -1,11 +1,13 @@
 package money
 
-open class Money(protected val amount: Int) {
+abstract class Money(protected val amount: Int) {
     companion object {
         fun dollar(amount: Int): Money {
             return Dollar(amount)
         }
     }
+
+    abstract fun times(multiplier: Int): Money
 
     override fun equals(other: Any?): Boolean {
         if (this === other) return true
@@ -24,13 +26,13 @@ open class Money(protected val amount: Int) {
 }
 
 class Dollar(amount: Int): Money(amount) {
-    fun times(multiplier: Int): Money {
+    override fun times(multiplier: Int): Money {
         return Dollar(this.amount * multiplier)
     }
 }
 
 class Franc(amount: Int): Money(amount) {
-    fun times(multiplier: Int): Money {
+    override fun times(multiplier: Int): Money {
         return Franc(this.amount * multiplier)
     }
 }
