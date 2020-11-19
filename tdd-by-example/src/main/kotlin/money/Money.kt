@@ -12,6 +12,7 @@ abstract class Money(protected val amount: Int) {
     }
 
     abstract fun times(multiplier: Int): Money
+    abstract fun currency(): String
 
     override fun equals(other: Any?): Boolean {
         if (this === other) return true
@@ -33,10 +34,18 @@ class Dollar(amount: Int): Money(amount) {
     override fun times(multiplier: Int): Money {
         return Dollar(this.amount * multiplier)
     }
+
+    override fun currency(): String {
+        return "USD"
+    }
 }
 
 class Franc(amount: Int): Money(amount) {
     override fun times(multiplier: Int): Money {
         return Franc(this.amount * multiplier)
+    }
+
+    override fun currency(): String {
+        return "CHF"
     }
 }
