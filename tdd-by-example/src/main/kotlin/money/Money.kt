@@ -3,7 +3,7 @@ package money
 open class Money(protected val amount: Int, protected val currency: String) {
     companion object {
         fun dollar(amount: Int): Money {
-            return Dollar(amount, "USD")
+            return Money(amount, "USD")
         }
 
         fun franc(amount: Int): Money {
@@ -35,9 +35,6 @@ open class Money(protected val amount: Int, protected val currency: String) {
         result = 31 * result + currency.hashCode()
         return result
     }
-}
-
-class Dollar(amount: Int, currency: String): Money(amount, currency) {
 }
 
 class Franc(amount: Int, currency: String): Money(amount, currency) {
