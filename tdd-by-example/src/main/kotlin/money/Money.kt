@@ -21,18 +21,22 @@ open class Money(protected val amount: Int, protected val currency: String) {
 
     override fun equals(other: Any?): Boolean {
         if (this === other) return true
-        if (javaClass != other?.javaClass) return false
 
         other as Money
 
         if (amount != other.amount) return false
+        if (currency != other.currency) return false
 
         return true
     }
 
     override fun hashCode(): Int {
-        return amount
+        var result = amount
+        result = 31 * result + currency.hashCode()
+        return result
     }
+
+
 }
 
 class Dollar(amount: Int, currency: String): Money(amount, currency) {
@@ -43,6 +47,6 @@ class Dollar(amount: Int, currency: String): Money(amount, currency) {
 
 class Franc(amount: Int, currency: String): Money(amount, currency) {
     override fun times(multiplier: Int): Money {
-        return Money(this.amount * multiplier, currency)
+        return Franc(this.amount * multiplier, currency)
     }
 }
