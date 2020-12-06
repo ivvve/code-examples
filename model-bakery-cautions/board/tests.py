@@ -5,6 +5,12 @@ from board.models import Board, Reply
 
 
 class ModelBakeryTest(TestCase):
+    def setUp(self):
+        def content_field_fixture():
+            return "default content"
+
+        baker.generators.add('board.models.ContentField', content_field_fixture)
+
     def test_make_saves_fixture_data_in_db(self):
         reply = baker.make(Reply)
 
@@ -30,3 +36,11 @@ class ModelBakeryTest(TestCase):
 
         self.assertIsNotNone(Board.objects.get(pk=reply.board.pk))
         self.assertIsNone(reply.pk)
+
+    def test_generators_add_returns_assigned_value(self):
+        board = baker.make(Board)
+        self.assertEquals(board.content, "default content")
+
+        board = baker.prepare(Board)
+        self.assertEquals(board.content, "default content")
+
