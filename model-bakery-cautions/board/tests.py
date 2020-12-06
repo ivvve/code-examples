@@ -27,7 +27,7 @@ class ModelBakeryTest(TestCase):
             print(exception)  # NOT NULL constraint failed: board_reply.board_id
 
     def test_prepare_does_not_save_fixture_data_in_db(self):
-        reply = baker.prepare(Reply, _save_related=True)
+        reply = baker.prepare(Reply)
 
         self.assertIsNone(reply.pk)
 
