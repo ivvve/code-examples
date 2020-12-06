@@ -6,10 +6,10 @@ from board.models import Board, Reply
 
 class ModelBakeryTest(TestCase):
     def setUp(self):
-        def content_field_fixture():
+        def content_field_generator():
             return "default content"
 
-        baker.generators.add('board.models.ContentField', content_field_fixture)
+        baker.generators.add('board.models.ContentField', content_field_generator)
 
     def test_make_saves_fixture_data_in_db(self):
         reply = baker.make(Reply)
