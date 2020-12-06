@@ -4,12 +4,18 @@ node_modules
 # compiled ts files
 dist
 
+# python dependencies
+.venv
+
 # gradle
 .gradle
 build/
 !gradle/wrapper/gradle-wrapper.jar
 !**/src/main/**/build/
 !**/src/test/**/build/
+
+# DB
+**/db.sqlite3
 
 ### STS ###
 .apt_generated
