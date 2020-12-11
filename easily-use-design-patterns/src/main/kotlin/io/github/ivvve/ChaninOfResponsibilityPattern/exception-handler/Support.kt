@@ -1,4 +1,4 @@
-package io.github.ivvve.ChaninOfResponsibilityPattern
+package io.github.ivvve.ChaninOfResponsibilityPattern.`exception-handler`
 
 abstract class Support(private val name: String) {
     var next: Support? = null

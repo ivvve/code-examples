@@ -1,4 +1,4 @@
-package io.github.ivvve.ChaninOfResponsibilityPattern
+package io.github.ivvve.ChaninOfResponsibilityPattern.`exception-handler`
 
 class Problem(val number: Int) {
     override fun toString(): String {

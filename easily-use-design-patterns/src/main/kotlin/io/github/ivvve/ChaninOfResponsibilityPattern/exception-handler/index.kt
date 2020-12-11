@@ -1,4 +1,4 @@
-package io.github.ivvve.ChaninOfResponsibilityPattern
+package io.github.ivvve.ChaninOfResponsibilityPattern.`exception-handler`
 
 fun main() {
     val noSupport: Support = NoSupport("No")
