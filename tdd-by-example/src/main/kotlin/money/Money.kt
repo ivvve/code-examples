@@ -1,6 +1,6 @@
 package money
 
-open class Money(protected val amount: Int, protected val currency: String) {
+class Money(protected val amount: Int, protected val currency: String) {
     companion object {
         fun dollar(amount: Int): Money {
             return Money(amount, "USD")
@@ -11,7 +11,11 @@ open class Money(protected val amount: Int, protected val currency: String) {
         }
     }
 
-    open fun times(multiplier: Int): Money {
+    fun plus(added: Money): Money {
+        return Money(this.amount + added.amount, currency)
+    }
+
+    fun times(multiplier: Int): Money {
         return Money(this.amount * multiplier, currency)
     }
 

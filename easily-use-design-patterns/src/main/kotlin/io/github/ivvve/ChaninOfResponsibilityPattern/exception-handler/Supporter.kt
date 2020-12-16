@@ -1,26 +1,30 @@
 package io.github.ivvve.ChaninOfResponsibilityPattern.`exception-handler`
 
-abstract class Support(private val name: String) {
-    var next: Support? = null
+// Handler
+abstract class Supporter(private val name: String) {
+    var next: Supporter? = null
 
     // 다음 객체 Chain을 만듦
-    fun setNext(next: Support): Support {
+    fun setNext(next: Supporter): Supporter {
         this.next = next
         return next
     }
 
-    // 외부에 노출되는 처리 로직
+    // handle: 외부에 노출되는 처리 로직
     fun support(problem: Problem) {
+        // 처리 가능한 지 확인
         val resolved = this.resolve(problem)
 
         if (resolved) {
-            return this.done(problem)
+            return this.done(problem) // 자기가 처리
         }
 
+        // 다음애가 있으면 다음애가 처리
         if (this.next != null) {
             return this.next!!.support(problem)  // 다음 객체에 떠넘기기
         }
 
+        // 실패....
         this.fail(problem)
     }
 
@@ -38,25 +42,26 @@ abstract class Support(private val name: String) {
     }
 }
 
-class NoSupport(name: String) : Support(name) {
+// Concrete Handler
+class NoSupporter(name: String) : Supporter(name) {
     override fun resolve(problem: Problem): Boolean {
         return false
     }
 }
 
-class LimitSupport(name: String, private val limit: Int) : Support(name) {
+class LimitSupporter(name: String, private val limit: Int) : Supporter(name) {
     override fun resolve(problem: Problem): Boolean {
         return problem.number < this.limit
     }
 }
 
-class OddSupport(name: String) : Support(name) {
+class OddSupporter(name: String) : Supporter(name) {
     override fun resolve(problem: Problem): Boolean {
         return problem.number % 2 == 1
     }
 }
 
-class SpecialSupport(name: String, private val number: Int) : Support(name) {
+class SpecialSupporter(name: String, private val number: Int) : Supporter(name) {
     override fun resolve(problem: Problem): Boolean {
         return this.number == problem.number
     }

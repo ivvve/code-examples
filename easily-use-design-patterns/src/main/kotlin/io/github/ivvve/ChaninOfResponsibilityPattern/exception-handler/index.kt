@@ -1,28 +1,28 @@
 package io.github.ivvve.ChaninOfResponsibilityPattern.`exception-handler`
 
 fun main() {
-    val noSupport: Support = NoSupport("No")
-    val limit100Support: Support = LimitSupport("Limit", 100)
-    val specialSupport: Support = SpecialSupport("Special", 429)
-    val limit200Support: Support = LimitSupport("Limit 200", 200)
-    val oddSupport: Support = OddSupport("Odd")
-    val limit300Support: Support = LimitSupport("Limit 300", 300)
+    val noSupporter: Supporter = NoSupporter("No")
+    val limit100Supporter: Supporter = LimitSupporter("Limit 100", 100)
+    val specialSupporter: Supporter = SpecialSupporter("Special", 429)
+    val limit200Supporter: Supporter = LimitSupporter("Limit 200", 200)
+    val oddSupporter: Supporter = OddSupporter("Odd")
+    val limit300Supporter: Supporter = LimitSupporter("Limit 300", 300)
 
-    noSupport.setNext(limit100Support)
-        .setNext(specialSupport)
-        .setNext(limit200Support)
-        .setNext(oddSupport)
-        .setNext(limit300Support)
+    noSupporter.setNext(limit100Supporter)
+        .setNext(specialSupporter)
+        .setNext(limit200Supporter)
+        .setNext(oddSupporter)
+        .setNext(limit300Supporter)
 
     for (i in 0..500 step 33) {
-        noSupport.support(Problem(i))
+        noSupporter.support(Problem(i))
     }
 
     /**
-     * [Limit] resolved [Problem-0]
-     * [Limit] resolved [Problem-33]
-     * [Limit] resolved [Problem-66]
-     * [Limit] resolved [Problem-99]
+     * [Limit 100] resolved [Problem-0]
+     * [Limit 100] resolved [Problem-33]
+     * [Limit 100] resolved [Problem-66]
+     * [Limit 100] resolved [Problem-99]
      * [Limit 200] resolved [Problem-132]
      * [Limit 200] resolved [Problem-165]
      * [Limit 200] resolved [Problem-198]
