@@ -1,5 +1,15 @@
 package io.github.ivvve.TemplateMethod
 
+/**
+ * If constructor parameter is "Hello World",
+ * it displays like this:
+ * +-------------+
+ * | Hello World |
+ * | Hello World |
+ * | Hello World |
+ * | Hello World |
+ * +-------------+
+ */
 class StringDisplay(private val string: String) : AbstractDisplay() {
     override fun open() {
         this.printLine()
