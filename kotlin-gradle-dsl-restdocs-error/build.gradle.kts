@@ -27,14 +27,14 @@ dependencies {
 	testImplementation("org.springframework.restdocs:spring-restdocs-mockmvc")
 }
 
-tasks.withType<KotlinCompile> {
-	kotlinOptions {
-		freeCompilerArgs = listOf("-Xjsr305=strict")
-		jvmTarget = "11"
-	}
-}
-
 // v1
+//tasks.withType<KotlinCompile> {
+//	kotlinOptions {
+//		freeCompilerArgs = listOf("-Xjsr305=strict")
+//		jvmTarget = "11"
+//	}
+//}
+//
 //tasks.withType<Test> {
 //	useJUnitPlatform()
 //}
@@ -50,6 +50,13 @@ tasks.withType<KotlinCompile> {
 
 // v2
 tasks {
+	withType<KotlinCompile> {
+		kotlinOptions {
+			freeCompilerArgs = listOf("-Xjsr305=strict")
+			jvmTarget = "11"
+		}
+	}
+
 	withType<Test> {
 		useJUnitPlatform()
 	}
