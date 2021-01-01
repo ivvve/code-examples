@@ -34,15 +34,32 @@ tasks.withType<KotlinCompile> {
 	}
 }
 
-tasks.withType<Test> {
-	useJUnitPlatform()
-}
+// v1
+//tasks.withType<Test> {
+//	useJUnitPlatform()
+//}
+//
+//tasks.test {
+//	outputs.dir(snippetsDir)
+//}
+//
+//tasks.asciidoctor {
+//	inputs.dir(snippetsDir)
+//	dependsOn(tasks.test)
+//}
 
-tasks.test {
-	outputs.dir(snippetsDir)
-}
+// v2
+tasks {
+	withType<Test> {
+		useJUnitPlatform()
+	}
 
-tasks.asciidoctor {
-	inputs.dir(snippetsDir)
-	dependsOn(tasks.test)
+	withType<Test> {
+		outputs.dir(snippetsDir)
+	}
+
+	withType<org.asciidoctor.gradle.AsciidoctorTask> {
+		inputs.dir(snippetsDir)
+		dependsOn(test)
+	}
 }
