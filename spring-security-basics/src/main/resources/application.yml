@@ -3,3 +3,6 @@ spring:
     url: jdbc:mysql://localhost:8200/security
     username: root
     password: root
+  jpa:
+    open-in-view: false
+    generate-ddl: true
