@@ -1,4 +1,4 @@
-package io.github.ivvve.security.config
+package io.github.ivvve.security.config.security
 
 import org.springframework.context.annotation.Bean
 import org.springframework.context.annotation.Configuration
@@ -48,18 +48,18 @@ class WebSecurityConfig : WebSecurityConfigurerAdapter() {
         super.configure(auth)
     }
 
-    @Bean
-    fun userDetailsService(dataSource: DataSource): UserDetailsService {
-        /**
-         * 아래와 같은 query를 통해 UserDetails를 가져온다
-         * SELECT username, password, enabled FROM users
-         *
-         * String userName = rs.getString(1);
-         * String password = rs.getString(2);
-         * boolean enabled = rs.getBoolean(3);
-         */
-        return JdbcUserDetailsManager(dataSource)
-    }
+//    @Bean
+//    fun userDetailsService(dataSource: DataSource): UserDetailsService {
+//        /**
+//         * 아래와 같은 query를 통해 UserDetails를 가져온다
+//         * SELECT username, password, enabled FROM users
+//         *
+//         * String userName = rs.getString(1);
+//         * String password = rs.getString(2);
+//         * boolean enabled = rs.getBoolean(3);
+//         */
+//        return JdbcUserDetailsManager(dataSource)
+//    }
 
     @Bean
     fun passwordEncoder(): PasswordEncoder {
