@@ -1,5 +1,5 @@
 spring:
-  security:
-    user:
-      name: devson
-      password: devson1234
+  datasource:
+    url: jdbc:mysql://localhost:8200/security
+    username: root
+    password: root
