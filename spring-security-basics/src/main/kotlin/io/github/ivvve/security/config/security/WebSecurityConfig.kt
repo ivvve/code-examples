@@ -12,12 +12,24 @@ import org.springframework.security.crypto.password.NoOpPasswordEncoder
 import org.springframework.security.crypto.password.PasswordEncoder
 import org.springframework.security.provisioning.InMemoryUserDetailsManager
 import org.springframework.security.provisioning.JdbcUserDetailsManager
+import org.springframework.web.cors.CorsConfiguration
+import org.springframework.web.cors.CorsConfigurationSource
 import javax.sql.DataSource
 
 @Configuration
 class WebSecurityConfig : WebSecurityConfigurerAdapter() {
     override fun configure(http: HttpSecurity?) {
         http!!
+            .cors().configurationSource(CorsConfigurationSource {
+                val config = CorsConfiguration()
+                config.setAllowedOriginPatterns(listOf("http://devson.com"))
+                config.addAllowedMethod("*")
+                config.addAllowedHeader("*")
+                config.validateAllowCredentials()
+                config.setMaxAge(3600L)
+                config
+            })
+            .and()
             .authorizeRequests()
             .antMatchers("/account", "/balance", "/loans", "/cards").authenticated()
             .antMatchers("/notices", "/contact").permitAll()
