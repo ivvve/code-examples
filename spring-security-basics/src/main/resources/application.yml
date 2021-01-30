@@ -1,0 +1,5 @@
+spring:
+  security:
+    user:
+      name: devson
+      password: devson1234
