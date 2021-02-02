@@ -10,6 +10,8 @@ repositories {
     mavenCentral()
 }
 dependencies {
+    implementation("io.reactivex.rxjava2:rxjava:2.2.19")
+    implementation("io.reactivex.rxjava2:rxkotlin:2.3.0")
     testImplementation(kotlin("test-junit5"))
 }
 tasks.withType<KotlinCompile>() {

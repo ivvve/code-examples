@@ -1,0 +1,3 @@
+some-api:
+  host: https://some-api-to-test.com
+  port: 80

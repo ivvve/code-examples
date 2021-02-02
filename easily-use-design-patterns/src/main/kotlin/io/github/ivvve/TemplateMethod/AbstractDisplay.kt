@@ -2,15 +2,13 @@ package io.github.ivvve.TemplateMethod
 
 abstract class AbstractDisplay {
     fun display() {
-        try {
-            this.open()
+        this.open()
 
-            for (i in 0 until 4) {
-                this.print()
-            }
-        } finally {
-            this.close()
+        for (i in 0 until 4) {
+            this.print()
         }
+
+        this.close()
     }
 
     protected abstract fun open()

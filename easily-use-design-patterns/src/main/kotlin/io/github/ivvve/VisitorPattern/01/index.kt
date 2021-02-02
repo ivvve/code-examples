@@ -4,5 +4,5 @@ fun main() {
     val gold: Member = GoldMember()
     val silver: Member = SilverMember()
 
-    BenefitImpl().point()
+//    BenefitImpl().point()
 }
