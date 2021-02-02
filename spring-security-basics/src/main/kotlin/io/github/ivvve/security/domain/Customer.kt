@@ -16,4 +16,7 @@ class Customer(email: String, pwd: String, role: String) {
 
     @Column
     var role: String = role
+
+    @OneToMany(fetch = FetchType.EAGER)
+    var authorities: MutableSet<Authority> = mutableSetOf()
 }

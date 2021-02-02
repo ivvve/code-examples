@@ -9,7 +9,9 @@ class CustomerUserDetails(
     private val customer: Customer
 ) : UserDetails {
     override fun getAuthorities(): MutableCollection<out GrantedAuthority> {
-        return mutableListOf(SimpleGrantedAuthority(this.customer.role))
+        return this.customer.authorities
+            .map { SimpleGrantedAuthority(it.name) }
+            .toMutableList()
     }
 
     override fun getPassword(): String {

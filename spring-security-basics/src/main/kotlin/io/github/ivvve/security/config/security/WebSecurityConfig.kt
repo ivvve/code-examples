@@ -31,7 +31,7 @@ class WebSecurityConfig : WebSecurityConfigurerAdapter() {
             })
             .and()
             .authorizeRequests()
-            .antMatchers("/account", "/balance", "/loans", "/cards").authenticated()
+            .antMatchers("/account", "/balance", "/loans", "/cards").hasAuthority("READ")
             .antMatchers("/notices", "/contact").permitAll()
             .and()
             .formLogin()
