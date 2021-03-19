@@ -1,0 +1,18 @@
+spring:
+  jpa:
+    show-sql: true
+    hibernate:
+      ddl-auto:
+
+  datasource:
+    first:
+      url: jdbc:mysql://localhost:8200/first?serverTimezone=Asia/Seoul
+      username: root
+      password: root
+      ddl-auto: validate
+
+    second:
+      url: jdbc:mysql://localhost:8210/second?serverTimezone=Asia/Seoul
+      username: root
+      password: root
+      ddl-auto: create
