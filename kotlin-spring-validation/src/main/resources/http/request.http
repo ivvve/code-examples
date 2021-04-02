@@ -1,0 +1,26 @@
+### Successful Request
+POST http://localhost:8080
+Content-Type: application/json
+
+{
+  "name": "devson",
+  "age": 30
+}
+
+### Fail Request: name
+POST http://localhost:8080
+Content-Type: application/json
+
+{
+  "name": "  ",
+  "age": 30
+}
+
+### Fail Request: age
+POST http://localhost:8080
+Content-Type: application/json
+
+{
+  "name": "devson",
+  "age": 9
+}
