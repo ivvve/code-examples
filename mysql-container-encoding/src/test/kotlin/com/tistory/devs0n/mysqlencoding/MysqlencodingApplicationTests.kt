@@ -13,6 +13,7 @@ import org.testcontainers.containers.MySQLContainer
 class MysqlencodingApplicationTests {
     companion object {
         private val mysqlContainer = MySQLContainer<Nothing>("mysql:5.7").apply {
+            withCommand("mysqld", "--character-set-server=utf8mb4")
             start()
         }
 
