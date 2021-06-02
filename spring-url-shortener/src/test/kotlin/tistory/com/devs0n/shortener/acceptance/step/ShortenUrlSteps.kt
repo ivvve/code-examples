@@ -10,6 +10,11 @@ import java.net.URI
 
 private const val SHORTEN_URL_URL = "/shorten-url"
 
+// given
+fun `Sent Shorten URL Request`(rawUrl: String): ExtractableResponse<Response> {
+    return `Send Shorten URL Request`(rawUrl)
+}
+
 // when
 fun `Send Shorten URL Request`(rawUrl: String): ExtractableResponse<Response> {
     val requestBody = mapOf("url" to rawUrl)
