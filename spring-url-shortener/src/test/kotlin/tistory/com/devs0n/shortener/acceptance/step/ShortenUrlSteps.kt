@@ -26,8 +26,12 @@ fun `Shorten URL Request Succeeded`(shortenUrlResponse: ExtractableResponse<Resp
 }
 
 fun `Shortened URL Responded`(shortenUrlResponse: ExtractableResponse<Response>, rawUrl: String) {
-    val shortenedUrl = shortenUrlResponse.body().jsonPath().getString("url")
+    val shortenedUrl = getShortenedUrl(shortenUrlResponse)
     assertThat(shortenedUrl).isNotEqualTo(rawUrl)
     assertThat(shortenedUrl).hasSize(7)
     assertThat(shortenedUrl.any { !it.isLetterOrDigit() }).isFalse
+}
+
+fun getShortenedUrl(shortenUrlResponse: ExtractableResponse<Response>): String {
+    return shortenUrlResponse.body().jsonPath().getString("url")
 }
