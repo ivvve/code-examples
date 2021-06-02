@@ -30,6 +30,9 @@ dependencies {
     runtimeOnly("io.r2dbc:r2dbc-h2")
     implementation("org.springframework.boot:spring-boot-starter-data-r2dbc")
 
+    // Util
+    implementation("org.springframework.boot:spring-boot-starter-validation")
+
     // Test
     testImplementation("org.springframework.boot:spring-boot-starter-test")
     testImplementation("io.projectreactor:reactor-test")
