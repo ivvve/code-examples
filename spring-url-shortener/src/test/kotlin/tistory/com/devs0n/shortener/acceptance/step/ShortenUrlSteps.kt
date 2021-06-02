@@ -7,6 +7,7 @@ import io.restassured.response.Response
 import org.assertj.core.api.Assertions.assertThat
 import org.springframework.http.HttpStatus
 import java.net.URI
+import java.net.URL
 
 private const val SHORTEN_URL_URL = "/shorten-url"
 
@@ -32,21 +33,21 @@ fun `Shorten URL Request Succeeded`(shortenUrlResponse: ExtractableResponse<Resp
 }
 
 fun `Shortened URL Responded`(shortenUrlResponse: ExtractableResponse<Response>, rawUrl: String) {
-    val shortenedUrl = getShortenedUrl(shortenUrlResponse)
-    val shortenedUrlId = getShortenedUrlId(shortenUrlResponse)
+    val originalUrl = getOriginalUrlFrom(shortenUrlResponse)
+    val shortenedUrl = getShortenedUrlFrom(shortenUrlResponse)
 
+    assertThat(originalUrl).isEqualTo(rawUrl)
     assertThat(shortenedUrl).isNotEqualTo(rawUrl)
-    assertThat(shortenedUrlId).hasSize(7)
-    assertThat(shortenedUrlId.any { !it.isLetterOrDigit() }).isFalse
-    assertThat(
-        URI(shortenedUrl).path.substring(1) // remove first `/` from path
-    ).isEqualTo(shortenedUrlId)
 }
 
-fun getShortenedUrl(shortenUrlResponse: ExtractableResponse<Response>): String {
-    return shortenUrlResponse.body().jsonPath().getString("url")
+fun getOriginalUrlFrom(shortenUrlResponse: ExtractableResponse<Response>): String {
+    return shortenUrlResponse.body().jsonPath().getString("original")
 }
 
-fun getShortenedUrlId(shortenUrlResponse: ExtractableResponse<Response>): String {
-    return shortenUrlResponse.body().jsonPath().getString("id")
+fun getShortenedUrlFrom(shortenUrlResponse: ExtractableResponse<Response>): String {
+    return shortenUrlResponse.body().jsonPath().getString("shortened")
+}
+
+fun getShortenedUrlCodeFrom(shortenUrlResponse: ExtractableResponse<Response>): String {
+    return URL(getShortenedUrlCodeFrom(shortenUrlResponse)).path.substring(1) // remove first `/`
 }

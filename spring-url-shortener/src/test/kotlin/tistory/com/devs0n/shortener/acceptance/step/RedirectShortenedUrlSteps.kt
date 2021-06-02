@@ -10,14 +10,14 @@ import org.springframework.http.HttpStatus
 fun `Send Redirect Shortened URL Request`(
     shortenUrlResponse: ExtractableResponse<Response>
 ): ExtractableResponse<Response> {
-    val shortenedUrlId = getShortenedUrlId(shortenUrlResponse)
-    return `Send Redirect Shortened URL Request`(shortenedUrlId)
+    val shortenedUrlCode = getShortenedUrlCodeFrom(shortenUrlResponse)
+    return `Send Redirect Shortened URL Request`(shortenedUrlCode)
 }
 
-fun `Send Redirect Shortened URL Request`(shortenedUrlId: String): ExtractableResponse<Response> {
+fun `Send Redirect Shortened URL Request`(shortenedUrlCode: String): ExtractableResponse<Response> {
     return RestAssured
         .given().log().all()
-        .`when`().get("/$shortenedUrlId")
+        .`when`().get("/$shortenedUrlCode")
         .then().log().all()
         .extract()
 }
