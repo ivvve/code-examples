@@ -16,14 +16,14 @@ fun `Send Redirect Shortened URL Request`(
 
 fun `Send Redirect Shortened URL Request`(shortenedUrlCode: String): ExtractableResponse<Response> {
     return RestAssured
-        .given().log().all()
+        .given().redirects().follow(false).log().all()
         .`when`().get("/$shortenedUrlCode")
         .then().log().all()
         .extract()
 }
 
 fun `Redirect Shortened URL Request Succeeded`(redirectShortenedUrlResponse: ExtractableResponse<Response>) {
-    assertThat(redirectShortenedUrlResponse.statusCode()).isEqualTo(HttpStatus.FOUND)
+    assertThat(redirectShortenedUrlResponse.statusCode()).isEqualTo(HttpStatus.FOUND.value())
 }
 
 fun `Redirect to Raw URL Responded`(redirectShortenedUrlResponse: ExtractableResponse<Response>, rawUrl: String) {

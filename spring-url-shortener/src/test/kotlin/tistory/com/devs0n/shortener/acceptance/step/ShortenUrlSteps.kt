@@ -49,5 +49,5 @@ fun getShortenedUrlFrom(shortenUrlResponse: ExtractableResponse<Response>): Stri
 }
 
 fun getShortenedUrlCodeFrom(shortenUrlResponse: ExtractableResponse<Response>): String {
-    return URL(getShortenedUrlCodeFrom(shortenUrlResponse)).path.substring(1) // remove first `/`
+    return URL(getShortenedUrlFrom(shortenUrlResponse)).path.substring(1) // remove first `/`
 }
