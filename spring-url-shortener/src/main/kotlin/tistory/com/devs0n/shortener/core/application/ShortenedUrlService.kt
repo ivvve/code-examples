@@ -1,6 +1,7 @@
 package tistory.com.devs0n.shortener.core.application
 
 import org.springframework.stereotype.Service
+import org.springframework.transaction.annotation.Transactional
 import tistory.com.devs0n.shortener.core.domain.ShortenedUrl
 import tistory.com.devs0n.shortener.core.domain.ShortenedUrlCodeGenerator
 import tistory.com.devs0n.shortener.core.domain.ShortenedUrlRepository
@@ -11,11 +12,12 @@ class ShortenedUrlService(
     private val shortenedUrlCodeGenerator: ShortenedUrlCodeGenerator,
     private val shortenedUrlRepository: ShortenedUrlRepository,
 ) {
-    fun shorten(originalUrl: String): ShortenedUrl {
-        val storedShortenedUrl = this.shortenedUrlRepository.findByOriginal(originalUrl)
+    @Transactional
+    suspend fun shorten(originalUrl: String): ShortenedUrl {
+        val shortedShortenedUrl = this.shortenedUrlRepository.findByOriginal(originalUrl)
 
-        if (storedShortenedUrl != null) {
-            return storedShortenedUrl
+        if (shortedShortenedUrl != null) {
+            return shortedShortenedUrl
         }
 
         val shortenedUrlCode = this.shortenedUrlCodeGenerator.generate()
@@ -23,7 +25,7 @@ class ShortenedUrlService(
         return this.shortenedUrlRepository.save(shortenedUrl)
     }
 
-    fun getByCode(shortenedUrlCode: String): ShortenedUrl {
+    suspend fun getByCode(shortenedUrlCode: String): ShortenedUrl {
         return this.shortenedUrlRepository.findByCode(shortenedUrlCode)
             ?: throw ShortenedUrlNotFoundException()
     }

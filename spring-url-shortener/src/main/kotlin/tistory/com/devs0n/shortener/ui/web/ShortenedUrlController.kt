@@ -13,7 +13,7 @@ class ShortenedUrlController(
     private val shortenedUrlService: ShortenedUrlService,
 ) {
     @PostMapping("/shorten-url")
-    fun handleShortenUrlRequest(
+    suspend fun handleShortenUrlRequest(
         @Valid @RequestBody request: ShortenUrlDto.Request
     ): ResponseEntity<ShortenUrlDto.Response> {
         val shortenedUrl = this.shortenedUrlService.shorten(request.url)
@@ -29,8 +29,9 @@ class ShortenedUrlController(
     }
 
     @GetMapping("/{shortenedUrlCode}")
-    fun handleRedirectShortenedUrlRequest(@PathVariable shortenedUrlCode: String): ResponseEntity<Unit> {
+    suspend fun handleRedirectShortenedUrlRequest(@PathVariable shortenedUrlCode: String): ResponseEntity<Unit> {
         val shortenedUrl = this.shortenedUrlService.getByCode(shortenedUrlCode)
+
         return ResponseEntity
             .status(HttpStatus.FOUND)
             .location(URI.create(shortenedUrl.original))

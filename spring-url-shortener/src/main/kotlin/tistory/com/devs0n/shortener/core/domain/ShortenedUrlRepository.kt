@@ -1,11 +1,11 @@
 package tistory.com.devs0n.shortener.core.domain
 
 interface ShortenedUrlRepository {
-    fun save(shortenedUrl: ShortenedUrl): ShortenedUrl
+    suspend fun save(shortenedUrl: ShortenedUrl): ShortenedUrl
 
-    fun existsByCode(code: String): Boolean
+    suspend fun existsByCode(code: String): Boolean
 
-    fun findByOriginal(original: String): ShortenedUrl?
+    suspend fun findByOriginal(original: String): ShortenedUrl?
 
-    fun findByCode(code: String): ShortenedUrl?
+    suspend fun findByCode(code: String): ShortenedUrl?
 }

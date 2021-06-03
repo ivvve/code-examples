@@ -8,7 +8,7 @@ import tistory.com.devs0n.shortener.core.domain.exception.CannotGenerateShortene
 class ShortenedUrlCodeGenerator(
     private val shortenedUrlRepository: ShortenedUrlRepository,
 ) {
-    fun generate(): String {
+    suspend fun generate(): String {
         for (i in 1..MAX_RETRY) {
             val code = this.generateRandomCode()
             val exists = this.shortenedUrlRepository.existsByCode(code)
