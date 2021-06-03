@@ -9,7 +9,8 @@ import java.time.LocalDateTime
 class ShortenedUrl {
     @Id
     @Column(value = "id")
-    val id: Long? = null
+    var id: Long? = null
+        protected set // to r2jdbc set property
 
     @Column(value = "original")
     val original: String
@@ -18,11 +19,12 @@ class ShortenedUrl {
     val code: String
 
     @Column(value = "created_at")
-    val createdAt: LocalDateTime
+    var createdAt: LocalDateTime
+        protected set // to r2jdbc set property
 
-    constructor(original: String, redirectCode: String) {
+    constructor(original: String, code: String) {
         this.original = original
-        this.code = redirectCode
+        this.code = code
         this.createdAt = LocalDateTime.now()
     }
 
