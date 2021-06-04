@@ -6,27 +6,21 @@ import org.springframework.data.relational.core.mapping.Table
 import java.time.LocalDateTime
 
 @Table(value = "shortened_urls")
-class ShortenedUrl {
+data class ShortenedUrl(
+    @Column(value = "original")
+    val original: String,
+
+    @Column(value = "code")
+    val code: String,
+) {
+    @Column(value = "created_at")
+    var createdAt: LocalDateTime = LocalDateTime.now()
+        private set // to r2jdbc set property
+
     @Id
     @Column(value = "id")
     var id: Long? = null
-        protected set // to r2jdbc set property
-
-    @Column(value = "original")
-    val original: String
-
-    @Column(value = "code")
-    val code: String
-
-    @Column(value = "created_at")
-    var createdAt: LocalDateTime
-        protected set // to r2jdbc set property
-
-    constructor(original: String, code: String) {
-        this.original = original
-        this.code = code
-        this.createdAt = LocalDateTime.now()
-    }
+        private set // to r2jdbc set property
 
     fun getFullShortenedUrl(host: String): String {
         return host + "/" + this.code
