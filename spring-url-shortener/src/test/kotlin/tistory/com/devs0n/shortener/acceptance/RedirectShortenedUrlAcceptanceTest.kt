@@ -27,6 +27,6 @@ class RedirectShortenedUrlAcceptanceTestExceptionalCase : IntegrationTest() {
         val redirectShortenedUrlResponse = `Send Redirect Shortened URL Request`("1234567")
 
         // then
-        `Redirect Shortened URL Request Failed because ShortenedUrl has not registered`(redirectShortenedUrlResponse)
+        `Redirect Shortened URL Request Failed - ShortenedUrl has not registered`(redirectShortenedUrlResponse)
     }
 }

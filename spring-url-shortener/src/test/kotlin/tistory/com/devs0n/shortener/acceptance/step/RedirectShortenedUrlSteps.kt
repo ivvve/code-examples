@@ -34,7 +34,7 @@ fun `Redirect to Original URL Responded`(
     assertThat(redirectShortenedUrlResponse.header("Location")).isEqualTo(originalUrl)
 }
 
-fun `Redirect Shortened URL Request Failed because ShortenedUrl has not registered`(
+fun `Redirect Shortened URL Request Failed - ShortenedUrl has not registered`(
     redirectShortenedUrlResponse: ExtractableResponse<Response>
 ) {
     assertThat(redirectShortenedUrlResponse.statusCode()).isEqualTo(HttpStatus.NOT_FOUND.value())
