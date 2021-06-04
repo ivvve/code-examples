@@ -25,8 +25,8 @@ class ShortenedUrlService(
         return this.shortenedUrlRepository.save(shortenedUrl)
     }
 
-    suspend fun getByCode(shortenedUrlCode: String): ShortenedUrl {
-        return this.shortenedUrlRepository.findByCode(shortenedUrlCode)
+    @Transactional(readOnly = true)
+    suspend fun getByCode(shortenedUrlCode: String) =
+        this.shortenedUrlRepository.findByCode(shortenedUrlCode)
             ?: throw ShortenedUrlNotFoundException()
-    }
 }
