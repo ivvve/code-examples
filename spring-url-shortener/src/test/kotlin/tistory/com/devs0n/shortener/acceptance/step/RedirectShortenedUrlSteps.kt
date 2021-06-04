@@ -26,6 +26,6 @@ fun `Redirect Shortened URL Request Succeeded`(redirectShortenedUrlResponse: Ext
     assertThat(redirectShortenedUrlResponse.statusCode()).isEqualTo(HttpStatus.FOUND.value())
 }
 
-fun `Redirect to Raw URL Responded`(redirectShortenedUrlResponse: ExtractableResponse<Response>, rawUrl: String) {
-    assertThat(redirectShortenedUrlResponse.header("Location")).isEqualTo(rawUrl)
+fun `Redirect to Original URL Responded`(redirectShortenedUrlResponse: ExtractableResponse<Response>, originalUrl: String) {
+    assertThat(redirectShortenedUrlResponse.header("Location")).isEqualTo(originalUrl)
 }

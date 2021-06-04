@@ -10,13 +10,13 @@ class ShortenUrlAcceptanceTest : IntegrationTest() {
     @Test
     fun `Shortening URL`() {
         // given
-        val rawUrl = "https://devs0n.tistory.com/"
+        val originalUrl = "https://devs0n.tistory.com/"
 
         // when
-        val shortenUrlResponse = `Send Shorten URL Request`(rawUrl)
+        val shortenUrlResponse = `Send Shorten URL Request`(originalUrl)
 
         // then
         `Shorten URL Request Succeeded`(shortenUrlResponse)
-        `Shortened URL Responded`(shortenUrlResponse, rawUrl)
+        `Shortened URL Responded`(shortenUrlResponse, originalUrl)
     }
 }
