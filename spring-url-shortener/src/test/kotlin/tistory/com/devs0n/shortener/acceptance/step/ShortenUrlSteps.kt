@@ -39,6 +39,10 @@ fun `Shortened URL Responded`(shortenUrlResponse: ExtractableResponse<Response>,
     assertThat(shortenedUrl).isNotEqualTo(originalUrl)
 }
 
+fun `Shorten URL Request Failed - Cannot Generate Shortened URL Code`(shortenUrlResponse: ExtractableResponse<Response>) {
+    assertThat(shortenUrlResponse.statusCode()).isEqualTo(HttpStatus.SERVICE_UNAVAILABLE.value())
+}
+
 fun getOriginalUrlFrom(shortenUrlResponse: ExtractableResponse<Response>): String {
     return shortenUrlResponse.body().jsonPath().getString("original")
 }
