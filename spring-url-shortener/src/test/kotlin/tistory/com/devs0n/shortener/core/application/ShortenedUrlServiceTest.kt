@@ -30,11 +30,28 @@ internal class ShortenedUrlServiceTest : DescribeSpec({
     }
 
     // tests
+    describe("shorten method") {
+        describe("when ShortenedUrl of given originalUrl is registered") {
+            it("returns registered ShortenedUrl") {
+                val registeredShortenedUrl = shortenedUrlService.shorten(shortenedUrl.original)
+                assertThat(registeredShortenedUrl).isEqualTo(shortenedUrl)
+            }
+        }
+
+        describe("when ShortenedUrl of given originalUrl is not registered") {
+            it("registers new ShortenedUrl") {
+                val newOriginalUrl = shortenedUrl.original + "category/"
+                val newShortenedUrl = shortenedUrlService.shorten(newOriginalUrl)
+                assertThat(newShortenedUrl.original).isEqualTo(newOriginalUrl)
+            }
+        }
+    }
+
     describe("getByCode method") {
         describe("when ShortenedUrl of given code is registered") {
             it("returns ShortenedUrl instance") {
-                val storedShortenedUrl = shortenedUrlService.getByCode(shortenedUrl.code)
-                assertThat(storedShortenedUrl).isEqualTo(shortenedUrl)
+                val registeredShortenedUrl = shortenedUrlService.getByCode(shortenedUrl.code)
+                assertThat(registeredShortenedUrl).isEqualTo(shortenedUrl)
             }
         }
 
