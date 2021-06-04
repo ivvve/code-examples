@@ -8,7 +8,7 @@ import tistory.com.devs0n.shortener.acceptance.step.`Send Shorten URL Request`
 import tistory.com.devs0n.shortener.acceptance.step.`Shorten URL Request Failed - Cannot Generate Shortened URL Code`
 import tistory.com.devs0n.shortener.acceptance.step.`Shorten URL Request Succeeded`
 import tistory.com.devs0n.shortener.acceptance.step.`Shortened URL Responded`
-import tistory.com.devs0n.shortener.core.domain.MockRandomShortenedUrlCodeGenerator
+import tistory.com.devs0n.shortener.core.domain.RandomShortenedUrlCodeGeneratorTestWrapper
 
 class ShortenUrlAcceptanceTest : IntegrationTest() {
     @Test
@@ -27,7 +27,7 @@ class ShortenUrlAcceptanceTest : IntegrationTest() {
 
 class ShortenUrlAcceptanceTestExceptionalCase: IntegrationTest() {
     @Autowired
-    private lateinit var shortenedUrlCodeGenerator: MockRandomShortenedUrlCodeGenerator
+    private lateinit var shortenedUrlCodeGenerator: RandomShortenedUrlCodeGeneratorTestWrapper
 
     @AfterEach
     fun tearDon() {

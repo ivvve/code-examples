@@ -6,7 +6,7 @@ import tistory.com.devs0n.shortener.core.domain.exception.CannotGenerateShortene
 
 @Primary
 @Component
-class MockRandomShortenedUrlCodeGenerator(
+class RandomShortenedUrlCodeGeneratorTestWrapper(
     shortenedUrlRepository: ShortenedUrlRepository,
 ) : RandomShortenedUrlCodeGenerator(shortenedUrlRepository) {
     var throwCannotGenerateShortenedUrlCodeException = false

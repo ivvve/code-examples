@@ -3,7 +3,7 @@ package tistory.com.devs0n.shortener.core.application
 import io.kotest.core.spec.style.DescribeSpec
 import org.assertj.core.api.Assertions.assertThat
 import org.junit.jupiter.api.assertThrows
-import tistory.com.devs0n.shortener.core.domain.MockRandomShortenedUrlCodeGenerator
+import tistory.com.devs0n.shortener.core.domain.RandomShortenedUrlCodeGeneratorTestWrapper
 import tistory.com.devs0n.shortener.core.domain.MockShortenedUrlRepository
 import tistory.com.devs0n.shortener.core.domain.ShortenedUrl
 import tistory.com.devs0n.shortener.core.domain.exception.CannotGenerateShortenedUrlCodeException
@@ -12,7 +12,7 @@ import tistory.com.devs0n.shortener.core.domain.exception.ShortenedUrlNotFoundEx
 internal class ShortenedUrlServiceTest : DescribeSpec({
     // components
     val shortenedUrlRepository = MockShortenedUrlRepository()
-    val shortenedUrlCodeGenerator = MockRandomShortenedUrlCodeGenerator(shortenedUrlRepository)
+    val shortenedUrlCodeGenerator = RandomShortenedUrlCodeGeneratorTestWrapper(shortenedUrlRepository)
     val shortenedUrlService = ShortenedUrlService(
         shortenedUrlCodeGenerator,
         shortenedUrlRepository
