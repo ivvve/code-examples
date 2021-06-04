@@ -32,11 +32,11 @@ fun `Shorten URL Request Succeeded`(shortenUrlResponse: ExtractableResponse<Resp
 }
 
 fun `Shortened URL Responded`(shortenUrlResponse: ExtractableResponse<Response>, originalUrl: String) {
-    val originalUrl = getOriginalUrlFrom(shortenUrlResponse)
-    val shortenedUrl = getShortenedUrlFrom(shortenUrlResponse)
+    val responseOriginalUrl = getOriginalUrlFrom(shortenUrlResponse)
+    val responseShortenedUrl = getShortenedUrlFrom(shortenUrlResponse)
 
-    assertThat(originalUrl).isEqualTo(originalUrl)
-    assertThat(shortenedUrl).isNotEqualTo(originalUrl)
+    assertThat(responseOriginalUrl).isEqualTo(originalUrl)
+    assertThat(responseShortenedUrl).isNotEqualTo(responseOriginalUrl)
 }
 
 fun `Shorten URL Request Failed - Cannot Generate Shortened URL Code`(shortenUrlResponse: ExtractableResponse<Response>) {
