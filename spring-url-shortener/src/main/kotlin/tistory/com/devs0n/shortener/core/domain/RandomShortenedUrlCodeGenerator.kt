@@ -2,7 +2,7 @@ package tistory.com.devs0n.shortener.core.domain
 
 import org.slf4j.LoggerFactory
 import org.springframework.stereotype.Component
-import tistory.com.devs0n.shortener.core.domain.exception.CannotGenerateShortenedUrlException
+import tistory.com.devs0n.shortener.core.domain.exception.CannotGenerateShortenedUrlCodeException
 
 /**
  * Implementation of ShortenedUrlCodeGenerator
@@ -25,7 +25,7 @@ class RandomShortenedUrlCodeGenerator(
             LOGGER.debug("ShortenUrlID was collided try again: $i times")
         }
 
-        throw CannotGenerateShortenedUrlException()
+        throw CannotGenerateShortenedUrlCodeException()
     }
 
     private fun generateRandomCode(): String {
