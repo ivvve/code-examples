@@ -37,7 +37,7 @@ dependencies {
     testImplementation("org.springframework.boot:spring-boot-starter-test")
     testImplementation("io.projectreactor:reactor-test")
     testImplementation("io.rest-assured:rest-assured")
-
+    testImplementation("io.kotest:kotest-runner-junit5-jvm:4.4.3")
 }
 
 tasks.withType<KotlinCompile> {
