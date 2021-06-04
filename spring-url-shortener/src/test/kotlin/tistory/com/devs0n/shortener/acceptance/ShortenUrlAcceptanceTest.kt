@@ -4,10 +4,7 @@ import org.junit.jupiter.api.AfterEach
 import org.junit.jupiter.api.Test
 import org.springframework.beans.factory.annotation.Autowired
 import tistory.com.devs0n.shortener.IntegrationTest
-import tistory.com.devs0n.shortener.acceptance.step.`Send Shorten URL Request`
-import tistory.com.devs0n.shortener.acceptance.step.`Shorten URL Request Failed - Cannot Generate Shortened URL Code`
-import tistory.com.devs0n.shortener.acceptance.step.`Shorten URL Request Succeeded`
-import tistory.com.devs0n.shortener.acceptance.step.`Shortened URL Responded`
+import tistory.com.devs0n.shortener.acceptance.step.*
 import tistory.com.devs0n.shortener.core.domain.RandomShortenedUrlCodeGeneratorTestWrapper
 
 class ShortenUrlAcceptanceTest : IntegrationTest() {
@@ -25,7 +22,7 @@ class ShortenUrlAcceptanceTest : IntegrationTest() {
     }
 }
 
-class ShortenUrlAcceptanceTestExceptionalCase: IntegrationTest() {
+class ShortenUrlAcceptanceTestExceptionalCase : IntegrationTest() {
     @Autowired
     private lateinit var shortenedUrlCodeGenerator: RandomShortenedUrlCodeGeneratorTestWrapper
 
@@ -45,5 +42,25 @@ class ShortenUrlAcceptanceTestExceptionalCase: IntegrationTest() {
 
         // then
         `Shorten URL Request Failed - Cannot Generate Shortened URL Code`(shortenUrlResponse)
+    }
+}
+
+class ShortenUrlAcceptanceTestBadRequest : IntegrationTest() {
+    @Test
+    fun `Shortening URL - url `() {
+        // Null
+        `Redirect Shortened URL Request Failed - Invalid url`(
+            `Send Shorten URL Request`(null)
+        )
+
+        // Blank
+        `Redirect Shortened URL Request Failed - Invalid url`(
+            `Send Shorten URL Request`(" ")
+        )
+
+        // Not URL
+        `Redirect Shortened URL Request Failed - Invalid url`(
+            `Send Shorten URL Request`("devs0n")
+        )
     }
 }

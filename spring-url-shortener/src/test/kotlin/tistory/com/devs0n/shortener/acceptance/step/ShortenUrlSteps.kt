@@ -16,7 +16,7 @@ fun `Sent Shorten URL Request`(originalUrl: String): ExtractableResponse<Respons
 }
 
 // when
-fun `Send Shorten URL Request`(originalUrl: String): ExtractableResponse<Response> {
+fun `Send Shorten URL Request`(originalUrl: String?): ExtractableResponse<Response> {
     val requestBody = mapOf("url" to originalUrl)
 
     return RestAssured
@@ -42,6 +42,13 @@ fun `Shortened URL Responded`(shortenUrlResponse: ExtractableResponse<Response>,
 fun `Shorten URL Request Failed - Cannot Generate Shortened URL Code`(shortenUrlResponse: ExtractableResponse<Response>) {
     assertThat(shortenUrlResponse.statusCode()).isEqualTo(HttpStatus.SERVICE_UNAVAILABLE.value())
 }
+
+fun `Redirect Shortened URL Request Failed - Invalid url`(
+    shortenUrlResponse: ExtractableResponse<Response>
+) {
+    assertThat(shortenUrlResponse.statusCode()).isEqualTo(HttpStatus.BAD_REQUEST.value())
+}
+
 
 fun getOriginalUrlFrom(shortenUrlResponse: ExtractableResponse<Response>): String {
     return shortenUrlResponse.body().jsonPath().getString("original")
