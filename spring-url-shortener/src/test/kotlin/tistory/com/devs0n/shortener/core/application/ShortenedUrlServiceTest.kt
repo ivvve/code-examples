@@ -3,15 +3,16 @@ package tistory.com.devs0n.shortener.core.application
 import io.kotest.core.spec.style.DescribeSpec
 import org.assertj.core.api.Assertions.assertThat
 import org.junit.jupiter.api.assertThrows
+import tistory.com.devs0n.shortener.core.domain.MockRandomShortenedUrlCodeGenerator
 import tistory.com.devs0n.shortener.core.domain.MockShortenedUrlRepository
-import tistory.com.devs0n.shortener.core.domain.RandomShortenedUrlCodeGenerator
 import tistory.com.devs0n.shortener.core.domain.ShortenedUrl
+import tistory.com.devs0n.shortener.core.domain.exception.CannotGenerateShortenedUrlCodeException
 import tistory.com.devs0n.shortener.core.domain.exception.ShortenedUrlNotFoundException
 
 internal class ShortenedUrlServiceTest : DescribeSpec({
     // components
     val shortenedUrlRepository = MockShortenedUrlRepository()
-    val shortenedUrlCodeGenerator = RandomShortenedUrlCodeGenerator(shortenedUrlRepository)
+    val shortenedUrlCodeGenerator = MockRandomShortenedUrlCodeGenerator(shortenedUrlRepository)
     val shortenedUrlService = ShortenedUrlService(
         shortenedUrlCodeGenerator,
         shortenedUrlRepository
@@ -27,6 +28,7 @@ internal class ShortenedUrlServiceTest : DescribeSpec({
 
     afterEach {
         shortenedUrlRepository.reset()
+        shortenedUrlCodeGenerator.reset()
     }
 
     // tests
@@ -39,10 +41,21 @@ internal class ShortenedUrlServiceTest : DescribeSpec({
         }
 
         describe("when ShortenedUrl of given originalUrl is not registered") {
+            val newOriginalUrl = shortenedUrl.original + "category/"
+
             it("registers new ShortenedUrl") {
-                val newOriginalUrl = shortenedUrl.original + "category/"
                 val newShortenedUrl = shortenedUrlService.shorten(newOriginalUrl)
                 assertThat(newShortenedUrl.original).isEqualTo(newOriginalUrl)
+            }
+
+            describe("and cannot generate shortened url code") {
+                it("throws CannotGenerateShortenedUrlCodeException") {
+                    shortenedUrlCodeGenerator.throwCannotGenerateShortenedUrlCodeException = true
+
+                    assertThrows<CannotGenerateShortenedUrlCodeException> {
+                        shortenedUrlService.shorten(newOriginalUrl)
+                    }
+                }
             }
         }
     }
