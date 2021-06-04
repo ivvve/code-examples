@@ -1,12 +1,8 @@
 package tistory.com.devs0n.shortener.acceptance
 
-import org.junit.jupiter.api.Nested
 import org.junit.jupiter.api.Test
 import tistory.com.devs0n.shortener.IntegrationTest
-import tistory.com.devs0n.shortener.acceptance.step.`Redirect Shortened URL Request Succeeded`
-import tistory.com.devs0n.shortener.acceptance.step.`Redirect to Original URL Responded`
-import tistory.com.devs0n.shortener.acceptance.step.`Send Redirect Shortened URL Request`
-import tistory.com.devs0n.shortener.acceptance.step.`Sent Shorten URL Request`
+import tistory.com.devs0n.shortener.acceptance.step.*
 
 class RedirectShortenedUrlAcceptanceTest : IntegrationTest() {
     @Test
@@ -21,5 +17,16 @@ class RedirectShortenedUrlAcceptanceTest : IntegrationTest() {
         // then
         `Redirect Shortened URL Request Succeeded`(redirectShortenedUrlResponse)
         `Redirect to Original URL Responded`(redirectShortenedUrlResponse, originalUrl)
+    }
+}
+
+class RedirectShortenedUrlAcceptanceTestExceptionalCase : IntegrationTest() {
+    @Test
+    fun `Redirecting Shortened URL - not registered `() {
+        // when
+        val redirectShortenedUrlResponse = `Send Redirect Shortened URL Request`("1234567")
+
+        // then
+        `Redirect Shortened URL Request Failed because ShortenedUrl has not registered`(redirectShortenedUrlResponse)
     }
 }

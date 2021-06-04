@@ -22,10 +22,20 @@ fun `Send Redirect Shortened URL Request`(shortenedUrlCode: String): Extractable
         .extract()
 }
 
+// then
 fun `Redirect Shortened URL Request Succeeded`(redirectShortenedUrlResponse: ExtractableResponse<Response>) {
     assertThat(redirectShortenedUrlResponse.statusCode()).isEqualTo(HttpStatus.FOUND.value())
 }
 
-fun `Redirect to Original URL Responded`(redirectShortenedUrlResponse: ExtractableResponse<Response>, originalUrl: String) {
+fun `Redirect to Original URL Responded`(
+    redirectShortenedUrlResponse: ExtractableResponse<Response>,
+    originalUrl: String
+) {
     assertThat(redirectShortenedUrlResponse.header("Location")).isEqualTo(originalUrl)
+}
+
+fun `Redirect Shortened URL Request Failed because ShortenedUrl has not registered`(
+    redirectShortenedUrlResponse: ExtractableResponse<Response>
+) {
+    assertThat(redirectShortenedUrlResponse.statusCode()).isEqualTo(HttpStatus.NOT_FOUND.value())
 }
