@@ -3,6 +3,7 @@ package tistory.com.devs0n.shortener.ui.web
 import org.springframework.http.HttpStatus
 import org.springframework.http.ResponseEntity
 import org.springframework.web.bind.annotation.*
+import tistory.com.devs0n.shortener.common.ServiceInformation
 import tistory.com.devs0n.shortener.core.application.ShortenedUrlService
 import tistory.com.devs0n.shortener.ui.dto.ShortenUrlDto
 import java.net.URI
@@ -10,6 +11,7 @@ import javax.validation.Valid
 
 @RestController
 class ShortenedUrlController(
+    private val serviceInformation: ServiceInformation,
     private val shortenedUrlService: ShortenedUrlService,
 ) {
     @PostMapping("/shorten-url")
@@ -23,7 +25,7 @@ class ShortenedUrlController(
             .body(
                 ShortenUrlDto.Response(
                     shortenedUrl.original,
-                    shortenedUrl.getFullShortenedUrl("http://localhost:8080")
+                    shortenedUrl.getFullShortenedUrl(this.serviceInformation.host)
                 )
             )
     }

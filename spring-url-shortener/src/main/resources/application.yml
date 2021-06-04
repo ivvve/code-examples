@@ -2,3 +2,6 @@ logging:
   level:
     org.springframework.r2dbc: debug
     tistory.com.devs0n.shortener: debug
+
+service:
+  host: http://localhost:8080
