@@ -37,11 +37,12 @@ class SpringJpaQueryDslApplicationTests {
          * ORDER BY quantity ASC
          * LIMIT 5
          */
-        val products = jpaQueryFactory.from(product)
+        val products = jpaQueryFactory
+            .selectFrom(product)
             .where(product.registeredAt.after(LocalDateTime.now().minusMonths(1)))
             .orderBy(product.quantity.asc())
             .limit(5)
-            .fetch() as List<Product>
+            .fetch()
 
         products.forEach { println(it) }
 
