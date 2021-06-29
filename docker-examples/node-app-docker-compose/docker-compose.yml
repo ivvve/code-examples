@@ -1,0 +1,10 @@
+version: "3"
+
+services: 
+  node-redis: # 서비스 컨테이너 명
+    image: redis # 서비스의 이미지
+
+  node-app: # 서비스 컨테이너 명
+    build: .
+    ports:
+      - 8080:8080
