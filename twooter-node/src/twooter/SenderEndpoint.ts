@@ -1,5 +1,6 @@
 import { ReceiverEndPoint } from './ReceiverEndPoint';
+import { FollowStatus } from './FollowStatus';
 
 export interface SenderEndpoint {
-  onLogon(userId: String, receiver: ReceiverEndPoint): SenderEndpoint | null;
+  onFollow(targetUserId: String): FollowStatus;
 }
