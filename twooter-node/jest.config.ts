@@ -1,5 +1,11 @@
 import { defaults } from 'jest-config';
 
-defaults.testMatch = ['<rootDir>/test/**/*ts'];
-
-module.exports = defaults;
+module.exports = {
+  ...defaults,
+  testMatch: [
+    '<rootDir>/test/**/*ts'
+  ],
+  transform: {
+    '^.+\\.ts?$': 'ts-jest'
+  },
+};
