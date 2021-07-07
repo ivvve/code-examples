@@ -1,0 +1,12 @@
+[[User]]
+== 유저
+
+=== 유저 조회 조회
+
+==== Request
+
+include::{snippets}/user/http-request.adoc[]
+
+==== Response
+
+include::{snippets}/user/http-response.adoc[]
