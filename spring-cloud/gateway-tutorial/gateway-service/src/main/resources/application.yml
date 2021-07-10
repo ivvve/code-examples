@@ -6,6 +6,8 @@ spring:
     name: gateway-service
   cloud:
     gateway:
+      default-filters:
+        - MyGlobalFilter
       routes:
         - id: first-service
           predicates:
@@ -15,6 +17,7 @@ spring:
             - StripPrefix=1
             - AddRequestHeader=service-request, first-request-header
             - AddResponseHeader=service-response, first-response-header
+            - MyLoggingFilter=custom filter
         - id: second-service
           predicates:
             - Path=/second-service/**
