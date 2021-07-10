@@ -1,0 +1,32 @@
+server:
+  port: 8080
+
+spring:
+  application:
+    name: gateway-service
+  cloud:
+    gateway:
+      routes:
+        - id: first-service
+          predicates:
+            - Path=/first-service/**
+          uri: lb://FIRST-SERVICE
+          filters:
+            - StripPrefix=1
+            - AddRequestHeader=service-request, first-request-header
+            - AddResponseHeader=service-response, first-response-header
+        - id: second-service
+          predicates:
+            - Path=/second-service/**
+          uri: lb://SECOND-SERVICE
+          filters:
+            - StripPrefix=1
+            - AddRequestHeader=service-request, second-request-header
+            - AddResponseHeader=service-response, second-response-header
+
+eureka:
+  client:
+    register-with-eureka: true
+    fetch-registry: true
+    service-url:
+      defaultZone: http://localhost:8761/eureka
