@@ -10,9 +10,29 @@ spring:
         - id: user-service
           predicates:
             - Path=/user-service/**
+            - Method=GET
           uri: lb://USER-SERVICE
           filters:
             - StripPrefix=1
+            - RemoveRequestHeader=Cookie
+
+        - id: user-service
+          predicates:
+            - Path=/user-service/users
+            - Method=POST
+          uri: lb://USER-SERVICE
+          filters:
+            - StripPrefix=1
+            - RemoveRequestHeader=Cookie
+
+        - id: user-service
+          predicates:
+            - Path=/user-service/login
+            - Method=POST
+          uri: lb://USER-SERVICE
+          filters:
+            - StripPrefix=1
+            - RemoveRequestHeader=Cookie
 
         - id: catalog-service
           predicates:

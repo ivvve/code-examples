@@ -10,18 +10,23 @@ class User {
     @Id
     @Column("id")
     var id: Long? = null
+        private set
 
     @Column("user_id")
-    val userId: String
+    var userId: String
+        private set
 
     @Column("email")
-    val email: String
+    var email: String
+        private set
 
     @Column("name")
-    val name: String
+    var name: String
+        private set
 
     @Column("encrypted_password")
-    val encryptedPassword: String
+    var encryptedPassword: String
+        private set
 
     constructor(email: String, name: String, encryptedPassword: String) {
         this.userId = UUID.randomUUID().toString()

@@ -18,30 +18,14 @@ repositories {
 extra["springCloudVersion"] = "2020.0.3"
 
 dependencies {
+    implementation("org.springframework.boot:spring-boot-starter-data-jdbc")
+    implementation("org.springframework.boot:spring-boot-starter-web")
+    implementation("com.fasterxml.jackson.module:jackson-module-kotlin")
     implementation("org.jetbrains.kotlin:kotlin-reflect")
     implementation("org.jetbrains.kotlin:kotlin-stdlib-jdk8")
-    implementation("javax.xml.bind:jaxb-api")
-
-    // Web
-    implementation("com.fasterxml.jackson.module:jackson-module-kotlin")
-    implementation("org.springframework.boot:spring-boot-starter-web")
-
-    // DB
-    runtimeOnly("mysql:mysql-connector-java")
-    implementation("org.springframework.boot:spring-boot-starter-data-jdbc")
-
-    // Security
-//    implementation("org.springframework.security:spring-security-crypto")
-    implementation("org.springframework.boot:spring-boot-starter-security")
-    implementation("io.jsonwebtoken:jjwt:0.9.1")
-
-    // Cloud
     implementation("org.springframework.cloud:spring-cloud-starter-netflix-eureka-client")
-
-    // Dev
     developmentOnly("org.springframework.boot:spring-boot-devtools")
-
-    // Test
+    runtimeOnly("mysql:mysql-connector-java")
     testImplementation("org.springframework.boot:spring-boot-starter-test")
 }
 
