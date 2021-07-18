@@ -5,7 +5,7 @@ node_modules
 dist
 
 # python dependencies
-.venv
+**/.venv
 
 # gradle
 .gradle
@@ -44,3 +44,6 @@ out/
 
 ### VS Code ###
 .vscode/
+
+### Specific directory ###
+spring-cloud/e-commerce-config
