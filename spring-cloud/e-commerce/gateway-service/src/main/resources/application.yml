@@ -15,6 +15,7 @@ spring:
           filters:
             - StripPrefix=1
             - RemoveRequestHeader=Cookie
+            - AuthorizationHeaderFilter=${config.auth.secret}
 
         - id: user-service
           predicates:
@@ -54,3 +55,7 @@ eureka:
     register-with-eureka: true
     service-url:
       defaultZone: http://127.0.0.1:8761/eureka
+
+config:
+  auth:
+    secret: mysecret

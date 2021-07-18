@@ -9,8 +9,6 @@ import org.slf4j.LoggerFactory
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken
 import org.springframework.security.core.Authentication
 import org.springframework.security.core.AuthenticationException
-import org.springframework.security.core.context.SecurityContextHolder
-import org.springframework.security.core.userdetails.UserDetailsService
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter
 import javax.servlet.FilterChain
 import javax.servlet.http.HttpServletRequest
@@ -54,7 +52,7 @@ class AuthenticationFilter(
 
         response.status = HttpServletResponse.SC_OK
         response.contentType = "application/json"
-        response.writer.write("""{ "token" : "$token" """)
+        response.writer.write("""{ "token" : "$token" } """)
         response.writer.flush()
     }
 
