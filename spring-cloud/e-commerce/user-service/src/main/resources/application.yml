@@ -26,9 +26,16 @@
 #  auth:
 #    secret: mysecret
 #    token-expiration-hour: 24
-
+#
 management:
   endpoints:
     web:
       exposure:
-        include: health, refresh
+        include: health, refresh, busrefresh
+
+spring:
+  rabbitmq:
+    host: 127.0.0.1
+    port: 5672
+    username: guest
+    password: guest

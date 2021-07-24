@@ -45,5 +45,3 @@ out/
 ### VS Code ###
 .vscode/
 
-### Specific directory ###
-spring-cloud/e-commerce/config

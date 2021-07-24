@@ -16,3 +16,15 @@ spring:
 #          uri: https://github.com/ivvve/spring-cloud-config-repo.git  # remote
 #          username: <gitgub username>
 #          password: <github password>
+
+  rabbitmq:
+    host: 127.0.0.1
+    port: 5672
+    username: guest
+    password: guest
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health, busrefresh

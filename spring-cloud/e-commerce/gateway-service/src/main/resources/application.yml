@@ -69,8 +69,15 @@
 #  auth:
 #    secret: mysecret
 
+spring:
+  rabbitmq:
+    host: 127.0.0.1
+    port: 5672
+    username: guest
+    password: guest
+
 management:
   endpoints:
     web:
       exposure:
-        include: health, refresh, httptrace
+        include: health, refresh, httptrace, busrefresh
