@@ -1,0 +1,14 @@
+server:
+  port: 8888
+
+spring:
+  application:
+    name: config-service
+  cloud:
+    config:
+      server:
+        git:
+          uri: /Users/son/tmp/spring-cloud-config-repo  # local
+#          uri: https://github.com/ivvve/spring-cloud-config-repo.git  # remote
+#          username: <gitgub username>
+#          password: <github password>
