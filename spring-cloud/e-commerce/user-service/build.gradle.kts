@@ -36,7 +36,12 @@ dependencies {
     implementation("io.jsonwebtoken:jjwt:0.9.1")
 
     // Cloud
+    implementation("org.springframework.cloud:spring-cloud-starter-config")
+    implementation("org.springframework.cloud:spring-cloud-starter-bootstrap")
     implementation("org.springframework.cloud:spring-cloud-starter-netflix-eureka-client")
+
+    // Monitor
+    implementation("org.springframework.boot:spring-boot-starter-actuator")
 
     // Dev
     developmentOnly("org.springframework.boot:spring-boot-devtools")

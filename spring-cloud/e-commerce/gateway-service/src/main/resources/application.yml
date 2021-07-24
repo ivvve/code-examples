@@ -1,61 +1,76 @@
-server:
-  port: 8080
+#server:
+#  port: 8080
+#
+#spring:
+#  application:
+#    name: gateway-service
+#  cloud:
+#    gateway:
+#      routes:
+#        - id: user-service
+#          predicates:
+#            - Path=/user-service/actuator/**
+#            - Method=GET, POST
+#          uri: lb://USER-SERVICE
+#          filters:
+#            - StripPrefix=1
+#            - RemoveRequestHeader=Cookie
+#
+#        - id: user-service
+#          predicates:
+#            - Path=/user-service/users
+#            - Method=POST
+#          uri: lb://USER-SERVICE
+#          filters:
+#            - StripPrefix=1
+#            - RemoveRequestHeader=Cookie
+#
+#        - id: user-service
+#          predicates:
+#            - Path=/user-service/login
+#            - Method=POST
+#          uri: lb://USER-SERVICE
+#          filters:
+#            - StripPrefix=1
+#            - RemoveRequestHeader=Cookie
+#
+#        - id: user-service
+#          predicates:
+#            - Path=/user-service/**
+#            - Method=GET
+#          uri: lb://USER-SERVICE
+#          filters:
+#            - StripPrefix=1
+#            - RemoveRequestHeader=Cookie
+#            - AuthorizationHeaderFilter=${config.auth.secret}
+#
+#        - id: catalog-service
+#          predicates:
+#            - Path=/catalog-service/**
+#          uri: lb://CATALOGS-SERVICE
+#          filters:
+#            - StripPrefix=1
+#
+#        - id: order-service
+#          predicates:
+#            - Path=/order-service/**
+#          uri: lb://ORDER-SERVICE
+#          filters:
+#            - StripPrefix=1
+#
+#eureka:
+#  client:
+#    fetch-registry: true
+#    register-with-eureka: true
+#    service-url:
+#      defaultZone: http://127.0.0.1:8761/eureka
+#
+#config:
+#  auth:
+#    secret: mysecret
 
-spring:
-  application:
-    name: gateway-service
-  cloud:
-    gateway:
-      routes:
-        - id: user-service
-          predicates:
-            - Path=/user-service/**
-            - Method=GET
-          uri: lb://USER-SERVICE
-          filters:
-            - StripPrefix=1
-            - RemoveRequestHeader=Cookie
-            - AuthorizationHeaderFilter=${config.auth.secret}
-
-        - id: user-service
-          predicates:
-            - Path=/user-service/users
-            - Method=POST
-          uri: lb://USER-SERVICE
-          filters:
-            - StripPrefix=1
-            - RemoveRequestHeader=Cookie
-
-        - id: user-service
-          predicates:
-            - Path=/user-service/login
-            - Method=POST
-          uri: lb://USER-SERVICE
-          filters:
-            - StripPrefix=1
-            - RemoveRequestHeader=Cookie
-
-        - id: catalog-service
-          predicates:
-            - Path=/catalog-service/**
-          uri: lb://CATALOGS-SERVICE
-          filters:
-            - StripPrefix=1
-
-        - id: order-service
-          predicates:
-            - Path=/order-service/**
-          uri: lb://ORDER-SERVICE
-          filters:
-            - StripPrefix=1
-
-eureka:
-  client:
-    fetch-registry: true
-    register-with-eureka: true
-    service-url:
-      defaultZone: http://127.0.0.1:8761/eureka
-
-config:
-  auth:
-    secret: mysecret
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health, refresh, httptrace

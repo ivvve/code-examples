@@ -20,8 +20,9 @@ class WebSecurityConfig(
     override fun configure(http: HttpSecurity) {
         http
             .csrf().disable()
-            .authorizeRequests().antMatchers("/**")
-            .permitAll()
+            .authorizeRequests()
+            .antMatchers("/actuator/**").permitAll()
+            .antMatchers("/**").permitAll()
 //            .hasIpAddress("*") // API GW IP
             .and()
             .addFilter(this.getAuthenticationFilter())

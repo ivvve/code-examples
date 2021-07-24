@@ -4,9 +4,13 @@ server:
 spring:
   application:
     name: config-service
+#  profiles:
+#    active: native
   cloud:
     config:
       server:
+#        native:
+#          search-locations: file://${user.home}/tmp/spring-cloud-config-repo
         git:
           uri: /Users/son/tmp/spring-cloud-config-repo  # local
 #          uri: https://github.com/ivvve/spring-cloud-config-repo.git  # remote
