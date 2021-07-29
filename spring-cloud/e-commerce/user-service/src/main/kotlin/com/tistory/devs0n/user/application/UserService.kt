@@ -1,7 +1,9 @@
 package com.tistory.devs0n.user.application
 
-import com.tistory.devs0n.user.domain.SecurityUserDetails
+import com.tistory.devs0n.user.client.OrderResponse
+import com.tistory.devs0n.user.client.OrderServiceClient
 import com.tistory.devs0n.user.domain.PasswordEncryptor
+import com.tistory.devs0n.user.domain.SecurityUserDetails
 import com.tistory.devs0n.user.domain.User
 import com.tistory.devs0n.user.domain.UserRepository
 import org.springframework.security.core.userdetails.UserDetails
@@ -13,10 +15,13 @@ import org.springframework.transaction.annotation.Transactional
 class UserService(
     private val passwordEncryptor: PasswordEncryptor,
     private val userRepository: UserRepository,
+    private val orderServiceClient: OrderServiceClient,
 ) : UserDetailsService {
     @Transactional(readOnly = true)
-    fun getUser(userId: String): User {
-        return this.userRepository.findByUserId(userId) ?: throw RuntimeException("User Not Found")
+    fun getUser(userId: String): Pair<User, List<OrderResponse>> {
+        val user = this.userRepository.findByUserId(userId) ?: throw RuntimeException("User Not Found")
+        val userOrder = this.orderServiceClient.getOrders(user.userId)
+        return Pair(user, userOrder)
     }
 
     @Transactional
@@ -29,7 +34,9 @@ class UserService(
 
     @Transactional(readOnly = true)
     fun getUserByEmail(email: String): User {
-        return this.userRepository.findByEmail(email) ?: throw RuntimeException("User Not Found")
+        val user = this.userRepository.findByEmail(email) ?: throw RuntimeException("User Not Found")
+        val userOrder = this.orderServiceClient.getOrders(user.userId)
+        return user
     }
 
     /**

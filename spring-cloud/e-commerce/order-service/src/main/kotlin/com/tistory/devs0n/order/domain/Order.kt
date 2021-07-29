@@ -12,22 +12,28 @@ class Order {
         private set
 
     @Column("order_id")
-    val orderId: String
+    var orderId: String
+        private set
 
     @Column("user_id")
-    val userId: String
+    var userId: String
+        private set
 
     @Column("product_id")
-    val productId: String
+    var productId: String
+        private set
 
     @Column("quantity")
-    val quantity: Int
+    var quantity: Int
+        private set
 
     @Column("unit_price")
-    val unitPrice: Long
+    var unitPrice: Long
+        private set
 
     @Column("total_price")
-    val totalPrice: Long
+    var totalPrice: Long
+        private set
 
     constructor(userId: String, productId: String, quantity: Int, unitPrice: Long) {
         this.orderId = UUID.randomUUID().toString()

@@ -15,13 +15,13 @@ class UserController(
 ) {
     @GetMapping("/{userId}")
     fun getUser(@PathVariable("userId") userId: String): ResponseEntity<UserResponse> {
-        val user = this.userService.getUser(userId)
-        return ResponseEntity.status(HttpStatus.CREATED).body(UserResponse.of(user))
+        val (user, orders) = this.userService.getUser(userId)
+        return ResponseEntity.status(HttpStatus.CREATED).body(UserResponse.of(user, orders))
     }
 
     @PostMapping
     fun createUser(@Valid @RequestBody request: CreateUserRequest): ResponseEntity<UserResponse> {
         val user = this.userService.createUser(request.email, request.password, request.name)
-        return ResponseEntity.status(HttpStatus.CREATED).body(UserResponse.of(user))
+        return ResponseEntity.status(HttpStatus.CREATED).body(UserResponse.of(user, listOf()))
     }
 }

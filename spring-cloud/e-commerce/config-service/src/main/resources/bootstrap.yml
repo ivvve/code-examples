@@ -1,2 +1,6 @@
 encrypt:
-  key: mykey
+  key-store:
+    location: file://${user.home}/dev/code-examples/spring-cloud/e-commerce/key/mykey.jks
+    password: mypass
+    alias: mykey
+#  key: mykey
