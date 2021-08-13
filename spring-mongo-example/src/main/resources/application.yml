@@ -1,0 +1,4 @@
+spring:
+  data:
+    mongodb:
+      uri: mongodb://127.0.0.1:30000,127.0.0.1:30001,127.0.0.1:30002/playground?replicaSet=replset&readPreference=secondaryPreferred&poolSize=50
