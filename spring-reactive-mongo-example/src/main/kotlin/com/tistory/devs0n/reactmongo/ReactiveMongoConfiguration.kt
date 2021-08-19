@@ -8,9 +8,7 @@ import org.springframework.context.annotation.Configuration
 import org.springframework.data.mongodb.ReactiveMongoDatabaseFactory
 import org.springframework.data.mongodb.ReactiveMongoTransactionManager
 import org.springframework.data.mongodb.config.EnableMongoAuditing
-import org.springframework.data.mongodb.core.ReactiveMongoTemplate
 import org.springframework.data.mongodb.core.SimpleReactiveMongoDatabaseFactory
-import org.springframework.data.mongodb.core.convert.MongoConverter
 
 @Configuration
 @EnableMongoAuditing
