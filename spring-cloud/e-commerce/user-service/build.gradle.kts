@@ -44,7 +44,7 @@ dependencies {
     implementation("org.springframework.cloud:spring-cloud-starter-circuitbreaker-resilience4j")
     implementation("org.springframework.cloud:spring-cloud-starter-sleuth")
     implementation("org.springframework.cloud:spring-cloud-starter-zipkin:2.2.8.RELEASE")
-
+    implementation("io.micrometer:micrometer-registry-prometheus")
 
     // Monitor
     implementation("org.springframework.boot:spring-boot-starter-actuator")

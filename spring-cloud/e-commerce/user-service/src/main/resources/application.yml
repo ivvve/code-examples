@@ -38,7 +38,7 @@ management:
   endpoints:
     web:
       exposure:
-        include: health, refresh, busrefresh
+        include: health, refresh, busrefresh, info, prometheus, metrics
 
 #spring:
 #  rabbitmq:
