@@ -4,6 +4,7 @@ import com.tistory.devs0n.springmongo.content.domain.ContentRepository
 import com.tistory.devs0n.springmongo.content.domain.ContentType
 import com.tistory.devs0n.springmongo.content.service.ContentService
 import org.assertj.core.api.Assertions.assertThat
+import org.assertj.core.api.Assertions.assertThatThrownBy
 import org.junit.jupiter.api.AfterEach
 import org.junit.jupiter.api.Test
 import org.springframework.beans.factory.annotation.Autowired
@@ -57,12 +58,14 @@ class SpringMongoApplicationTests {
     @Test
     fun `createContent - Content 저장 후 Exception 발생 시 저장되지 않는다`() {
         // when
-        contentService.createContent(
-            type = ContentType.NOVEL,
-            title = "Novel 1",
-            description = "This is a novel content",
-            throws = true
-        )
+        assertThatThrownBy {
+            contentService.createContent(
+                type = ContentType.NOVEL,
+                title = "Novel 1",
+                description = "This is a novel content",
+                throws = true
+            )
+        }.isInstanceOf(RuntimeException::class.java)
 
         // then
         val contents = contentRepository.findAll()
