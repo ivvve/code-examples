@@ -21,9 +21,10 @@ fun main(args: Array<String>) {
         contentService.createContent(type = ContentType.VIDEO, title = "Video 2", description = "second video"),
     )
 
-    // ID로 조회
+    println("** ID로 Content 조회")
     println(contentRepository.findById(contents[0].id!!).get().informationString())
 
+    println("** 모든 Content 조회")
     contentRepository.findAll()
         .forEach { println(it.informationString()) }
 
