@@ -9,7 +9,6 @@ import org.springframework.data.mongodb.MongoTransactionManager
 import org.springframework.data.mongodb.config.EnableMongoAuditing
 import org.springframework.data.mongodb.core.SimpleMongoClientDatabaseFactory
 
-
 @Configuration
 @EnableMongoAuditing
 class MongoDbConfiguration {

@@ -4,11 +4,12 @@ import org.springframework.data.annotation.CreatedDate
 import org.springframework.data.annotation.Id
 import org.springframework.data.annotation.LastModifiedDate
 import org.springframework.data.mongodb.core.mapping.Field
+import org.springframework.data.mongodb.core.mapping.FieldType
 import java.time.LocalDateTime
 
 abstract class BaseDocumentEntity {
     @Id
-    @Field("_id")
+    @Field("_id", targetType = FieldType.OBJECT_ID)
     var id: String? = null
         private set
 
@@ -21,11 +22,4 @@ abstract class BaseDocumentEntity {
     @LastModifiedDate
     var updatedAt: LocalDateTime = LocalDateTime.now()
         private set
-
-    @Field("deleted")
-    var deleted: Boolean = false
-
-    fun delete() {
-        this.deleted = true
-    }
 }

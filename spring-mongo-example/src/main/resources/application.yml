@@ -1,4 +1,8 @@
 spring:
   data:
     mongodb:
-      uri: mongodb://127.0.0.1:30000,127.0.0.1:30001,127.0.0.1:30002/playground?replicaSet=replset&readPreference=secondaryPreferred&poolSize=50
+      uri: mongodb://127.0.0.1:27017/playground?replicaSet=rs&readPreference=secondaryPreferred&minpoolsize=5&maxpoolsize=5
+
+logging:
+  level:
+    org.springframework.data.mongodb: DEBUG

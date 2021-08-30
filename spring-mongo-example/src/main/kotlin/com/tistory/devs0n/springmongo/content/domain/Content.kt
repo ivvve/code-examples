@@ -19,8 +19,22 @@ class Content : BaseDocumentEntity {
         this.information = information
     }
 
-    companion object {
-        fun new(type: ContentType, title: String, description: String): Content =
-            Content(type, ContentInformation(title, description))
-    }
+    constructor(type: ContentType, title: String, description: String) :
+            this(type, ContentInformation(title, description))
+
+    fun informationString(): String = "Content(${this.id}) - ${this.type}, ${this.information}"
 }
+
+enum class ContentType {
+    VIDEO,
+    WEBTOON,
+    NOVEL
+}
+
+data class ContentInformation(
+    @Field("title")
+    val title: String,
+
+    @Field("description")
+    val description: String,
+)

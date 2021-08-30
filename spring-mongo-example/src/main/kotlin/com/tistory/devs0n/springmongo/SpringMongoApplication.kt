@@ -1,5 +1,6 @@
 package com.tistory.devs0n.springmongo
 
+import com.tistory.devs0n.springmongo.content.domain.Content
 import com.tistory.devs0n.springmongo.content.domain.ContentRepository
 import com.tistory.devs0n.springmongo.content.domain.ContentType
 import com.tistory.devs0n.springmongo.content.service.ContentService
@@ -14,13 +15,18 @@ fun main(args: Array<String>) {
     val contentService = ac.getBean(ContentService::class.java)
     val contentRepository = ac.getBean(ContentRepository::class.java)
 
-    // clean
-    contentRepository.deleteAll()
+    val contents = listOf(
+        contentService.createContent(type = ContentType.NOVEL, title = "Novel 1", description = "first novel"),
+        contentService.createContent(type = ContentType.VIDEO, title = "Video 1", description = "first video"),
+        contentService.createContent(type = ContentType.VIDEO, title = "Video 2", description = "second video"),
+    )
 
-    // check
-    contentService.createContent(ContentType.NOVEL, "Novel 1", "first")
-    try {
-        contentService.createContentAndThrow(ContentType.NOVEL, "Novel 2", "second")
-    } catch (e: Exception) {}
-    contentService.getContentsOf(ContentType.NOVEL).forEach{ println("${it.id} - ${it.type} ${it.information.title} ${it.information.description}") }
+    // ID로 조회
+    println(contentRepository.findById(contents[0].id!!).get().informationString())
+
+    contentRepository.findAll()
+        .forEach { println(it.informationString()) }
+
+    // clear data
+    contentRepository.deleteAll()
 }
