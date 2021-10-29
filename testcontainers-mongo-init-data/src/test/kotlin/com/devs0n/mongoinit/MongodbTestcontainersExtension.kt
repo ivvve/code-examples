@@ -11,7 +11,7 @@ class MongodbTestcontainersExtension : Extension, BeforeAllCallback {
         private val mongodbContainer: MongoDBContainer = MongoDBContainer("mongo:4.4")
     }
 
-    override fun beforeAll(context: ExtensionContext?) {
+    override fun beforeAll(context: ExtensionContext) {
         if (mongodbContainer.isRunning) {
             return
         }
