@@ -1,0 +1,19 @@
+spring:
+  datasource:
+    write:
+      hikari:
+        jdbc-url: jdbc:mysql://127.0.0.1:3306/playground
+        username: root
+        password: root
+
+    read-only:
+      hikari:
+        jdbc-url: jdbc:mysql://127.0.0.1:3306/playground_replica
+        username: root
+        password: root
+
+  jpa:
+    open-in-view: off
+    show-sql: true
+    hibernate:
+      ddl-auto: create
