@@ -17,3 +17,7 @@ spring:
     show-sql: true
     hibernate:
       ddl-auto: create
+
+decorator:
+  datasource:
+    enabled: false

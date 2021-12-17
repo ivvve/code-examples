@@ -23,7 +23,7 @@ dependencies {
     implementation("org.springframework.boot:spring-boot-starter-data-jpa")
     runtimeOnly("mysql:mysql-connector-java")
 
-    developmentOnly("com.github.gavlyukovskiy:p6spy-spring-boot-starter:1.6.2")
+    implementation("com.github.gavlyukovskiy:p6spy-spring-boot-starter:1.6.2")
     testImplementation("org.springframework.boot:spring-boot-starter-test")
 }
 
