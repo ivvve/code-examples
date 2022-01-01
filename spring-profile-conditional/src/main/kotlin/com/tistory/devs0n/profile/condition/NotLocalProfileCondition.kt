@@ -6,6 +6,7 @@ import org.springframework.core.type.AnnotatedTypeMetadata
 
 class NotLocalProfileCondition : Condition {
     private val localProfileCondition = LocalProfileCondition()
+
     override fun matches(context: ConditionContext, metadata: AnnotatedTypeMetadata): Boolean =
         !this.localProfileCondition.matches(context, metadata)
 }
