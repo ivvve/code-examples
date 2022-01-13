@@ -16,5 +16,8 @@ class OrderService(
         )
 
     @Transactional(readOnly = true)
-    fun getUserOrders(userId: String): List<Order> = this.orderRepository.findAllByUserId(userId)
+    fun getUserOrders(userId: String): List<Order>  {
+        throw IllegalArgumentException("YABAL")
+        return this.orderRepository.findAllByUserId(userId)
+    }
 }

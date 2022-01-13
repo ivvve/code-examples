@@ -6,6 +6,7 @@ import org.springframework.security.config.annotation.authentication.builders.Au
 import org.springframework.security.config.annotation.web.builders.HttpSecurity
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter
+import org.springframework.security.config.http.SessionCreationPolicy
 import org.springframework.security.crypto.argon2.Argon2PasswordEncoder
 import org.springframework.security.crypto.password.PasswordEncoder
 import org.springframework.security.web.authentication.www.BasicAuthenticationFilter
@@ -17,11 +18,15 @@ import org.springframework.web.cors.CorsConfigurationSource
 class WebSecurityConfig : WebSecurityConfigurerAdapter() {
     override fun configure(http: HttpSecurity?) {
         http!!
+            .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS).and()
+            .csrf().disable()
             .cors().configurationSource(CorsConfigurationSource {
                 val config = CorsConfiguration()
                 config.setAllowedOriginPatterns(listOf("http://devson.com"))
                 config.addAllowedMethod("*")
                 config.addAllowedHeader("*")
+                config.allowCredentials = true
+                config.exposedHeaders = listOf("Authorization")
                 config.validateAllowCredentials()
                 config.setMaxAge(3600L)
                 config

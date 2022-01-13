@@ -1,0 +1,2 @@
+ALTER TABLE db_migration_test.users
+ADD COLUMN email VARCHAR(100) DEFAULT NULL;
