@@ -1,0 +1,17 @@
+server:
+  port: 9000
+
+spring:
+  cloud:
+    gateway:
+      default-filters:
+        - name: CustomAuthFilter
+          args:
+            whiteList:
+              chrisToken: chris
+
+      routes:
+        - id: root
+          uri: http://localhost:8080
+          predicates:
+            - Path=/
