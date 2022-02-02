@@ -5,7 +5,7 @@ import org.springframework.stereotype.Component
 import org.springframework.web.server.ServerWebExchange
 import reactor.core.publisher.Mono
 
-@Component("KeyAsUserIdResolver")
+@Component("keyAsUserIdResolver")
 class KeyAsUserIdResolver : KeyResolver {
     override fun resolve(exchange: ServerWebExchange): Mono<String> {
         val userId = exchange.request.headers.getFirst("X-USER-ID")!!

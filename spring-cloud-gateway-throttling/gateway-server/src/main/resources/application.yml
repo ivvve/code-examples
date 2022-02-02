@@ -4,12 +4,12 @@ server:
 spring:
   cloud:
     gateway:
-#      default-filters:
-#        - name: AuthFilter
-#          args:
-#            whiteList:
-#              chrisToken: chris
-#
+      default-filters:
+        - name: AuthFilter
+          args:
+            whiteList:
+              chrisToken: chris
+
       routes:
         - id: all
           uri: http://localhost:8080
@@ -19,45 +19,7 @@ spring:
           filters:
             - name: RequestRateLimiter
               args:
-                redis-rate-limiter.replenishRate: 1
-                redis-rate-limiter.burstCapacity: 1
+                redis-rate-limiter.replenishRate: 5
+                redis-rate-limiter.burstCapacity: 5
                 redis-rate-limiter.requestedTokens: 1
-                key-resolver: "#{@keyResolverBeanName}"
-
-#server:
-#  port: 9000
-#
-#spring:
-#  redis:
-#    host: 127.0.0.1
-#    port: 6379
-#    database: 0
-#
-#  cloud:
-#    gateway:
-#      default-filters:
-#        - name: AuthFilter
-#          args:
-#            whiteList:
-#              chrisToken: chris
-#
-#      routes:
-#        - id: all
-#          uri: http://localhost:8080
-#          predicates:
-#            - Path=/**
-#
-#          filters:
-#            - name: ApiThrottlingFilter
-#              args:
-#                redis-rate-limiter.replenishRate: 1
-#                redis-rate-limiter.burstCapacity: 1
-#                redis-rate-limiter.requestedTokens: 1
-#                key-resolver: "#{@KeyAsUserIdResolver}"
-#
-##            - name: RequestRateLimiter
-##              args:
-##                redis-rate-limiter.replenishRate: 1
-##                redis-rate-limiter.burstCapacity: 1
-##                redis-rate-limiter.requestedTokens: 1
-##                key-resolver: "#{@KeyAsUserIdResolver}"
+                key-resolver: "#{@keyAsUserIdResolver}"
