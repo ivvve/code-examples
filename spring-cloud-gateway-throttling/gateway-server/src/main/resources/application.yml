@@ -4,18 +4,25 @@ server:
 spring:
   cloud:
     gateway:
-      default-filters:
-        - name: AuthFilter
-          args:
-            whiteList:
-              chrisToken: chris
-
+#      default-filters:
+#        - name: AuthFilter
+#          args:
+#            whiteList:
+#              chrisToken: chris
+#
       routes:
         - id: all
           uri: http://localhost:8080
           predicates:
             - Path=/**
 
+          filters:
+            - name: RequestRateLimiter
+              args:
+                redis-rate-limiter.replenishRate: 1
+                redis-rate-limiter.burstCapacity: 1
+                redis-rate-limiter.requestedTokens: 1
+                key-resolver: "#{@keyResolverBeanName}"
 
 #server:
 #  port: 9000

@@ -18,7 +18,7 @@ class KafkaConfig {
     fun consumerFactory(): ConsumerFactory<String, String> {
         return DefaultKafkaConsumerFactory(
             mapOf(
-                ConsumerConfig.BOOTSTRAP_SERVERS_CONFIG to "127.0.0.1:9092", // Broker 설정 (separator ',')
+                ConsumerConfig.BOOTSTRAP_SERVERS_CONFIG to "127.0.0.1:9092,127.0.0.1:9093,127.0.0.1:9094", // Broker 설정 (separator ',')
                 ConsumerConfig.GROUP_ID_CONFIG to "my_consumer", // Consumer Group 설정
                 ConsumerConfig.KEY_DESERIALIZER_CLASS_CONFIG to StringDeserializer::class.java,
                 ConsumerConfig.VALUE_DESERIALIZER_CLASS_CONFIG to StringDeserializer::class.java,

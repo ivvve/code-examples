@@ -1,0 +1,14 @@
+spring:
+  cloud:
+    gateway:
+      routes:
+        - id: api-server
+          predicates:
+            - Path=/api/**  # <- API Gateway로 들어오는 요청의 경로
+          uri: http://localhost:8081  # <- Routing 되는 경로
+          filters:
+            - StripPrefix=1  # <- 요청으로 들어온 URL 경로를 제거한다
+            - name: APIKeyFilter
+              args:
+                exclude:
+                  - ^\/users\/\d+$
