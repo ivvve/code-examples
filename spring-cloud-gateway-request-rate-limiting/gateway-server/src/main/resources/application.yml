@@ -2,6 +2,11 @@ server:
   port: 9000
 
 spring:
+  redis:
+    host: 127.0.0.1
+    port: 6379
+    database: 0
+
   cloud:
     gateway:
       default-filters:
@@ -19,7 +24,10 @@ spring:
           filters:
             - name: RequestRateLimiter
               args:
-                redis-rate-limiter.replenishRate: 5
-                redis-rate-limiter.burstCapacity: 5
+                redis-rate-limiter.replenishRate: 1
+                redis-rate-limiter.burstCapacity: 1
                 redis-rate-limiter.requestedTokens: 1
+#                redis-rate-limiter.replenishRate: 20
+#                redis-rate-limiter.burstCapacity: 100
+#                redis-rate-limiter.requestedTokens: 3
                 key-resolver: "#{@keyAsUserIdResolver}"

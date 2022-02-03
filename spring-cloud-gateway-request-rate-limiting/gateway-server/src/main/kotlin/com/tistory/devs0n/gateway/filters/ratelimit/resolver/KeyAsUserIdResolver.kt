@@ -1,4 +1,4 @@
-package com.tistory.devs0n.gateway.filters.throttling.resolver
+package com.tistory.devs0n.gateway.filters.ratelimit.resolver
 
 import org.springframework.cloud.gateway.filter.ratelimit.KeyResolver
 import org.springframework.stereotype.Component

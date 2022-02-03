@@ -1,4 +1,4 @@
-package com.tistory.devs0n.gateway.filters.throttling
+package com.tistory.devs0n.gateway.filters.ratelimit
 
 import org.springframework.cloud.gateway.filter.GatewayFilter
 import org.springframework.cloud.gateway.filter.factory.AbstractGatewayFilterFactory
