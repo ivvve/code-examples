@@ -30,4 +30,4 @@ spring:
 #                redis-rate-limiter.replenishRate: 20
 #                redis-rate-limiter.burstCapacity: 100
 #                redis-rate-limiter.requestedTokens: 3
-                key-resolver: "#{@keyAsUserIdResolver}"
+                key-resolver: "#{@userIdAsKeyResolver}"
