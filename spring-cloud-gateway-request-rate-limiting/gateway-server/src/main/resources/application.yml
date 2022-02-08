@@ -22,7 +22,8 @@ spring:
             - Path=/**
 
           filters:
-            - name: RequestRateLimiter
+#            - name: RequestRateLimiter
+            - name: RequestRateLimitFilter
               args:
                 redis-rate-limiter.replenishRate: 1
                 redis-rate-limiter.burstCapacity: 1

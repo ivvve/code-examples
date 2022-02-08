@@ -13,9 +13,9 @@ import org.springframework.stereotype.Component
 import reactor.core.publisher.Mono
 
 @Component
-class ApiThrottlingFilter(
+class RequestRateLimitFilter(
     private val rateLimiter: RateLimiter<RedisRateLimiter.Config>,
-) : AbstractGatewayFilterFactory<ApiThrottlingFilter.Config>(Config::class.java) {
+) : AbstractGatewayFilterFactory<RequestRateLimitFilter.Config>(Config::class.java) {
     class Config(
         val keyResolver: KeyResolver,
     ) : HasRouteId {
