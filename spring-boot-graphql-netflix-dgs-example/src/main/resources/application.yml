@@ -1,1 +1,4 @@
-
+dgs:
+  graphql:
+    graphiql:
+      enabled: true
