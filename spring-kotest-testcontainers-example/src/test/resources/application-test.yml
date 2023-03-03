@@ -1,0 +1,19 @@
+spring:
+  datasource:
+    url: # defined by testcontainers
+    username:
+    password:
+  jpa:
+    hibernate:
+      ddl-auto: create
+    show-sql: true
+    properties:
+      hibernate:
+        format_sql: true
+
+  data:
+    mongodb:
+      uri: # defined by testcontainers
+
+  redis:
+    url: # defined by testcontainers
