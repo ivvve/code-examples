@@ -1,13 +1,11 @@
 package com.tistory.devs0n.sample
 
 import com.tistory.devs0n.sample.integration.IntegrationTest
-import org.junit.jupiter.api.Test
+import io.kotest.core.spec.style.FunSpec
 
 @IntegrationTest
-class SpringKotestTestcontainersExampleApplicationTests {
+class SpringKotestTestcontainersExampleApplicationTests : FunSpec({
 
-    @Test
-    fun contextLoads() {
+    test("contextLoads") {
     }
-
-}
+})
