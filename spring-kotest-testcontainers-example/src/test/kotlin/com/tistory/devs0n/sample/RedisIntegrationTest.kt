@@ -16,6 +16,7 @@ class RedisIntegrationTest(
         redisEntityRepository.save(RedisEntity("redis"))
 
         redisEntityRepository.findAll().apply {
+            println(">>>>>> Redis data $this")
             this shouldHaveSize 1
             this.first().name shouldBe "redis"
         }

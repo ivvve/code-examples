@@ -15,7 +15,7 @@ class MongoDBIntegrationTest(
     test("MongoDB integration test") {
         mongodDBEntityRepository.save(MongoDBEntity("mongodb"))
         mongodDBEntityRepository.findAll().apply {
-            println(">>>>>> $this")
+            println(">>>>>> MongoDB data $this")
             this shouldHaveSize 1
             this.first().name shouldBe "mongodb"
         }

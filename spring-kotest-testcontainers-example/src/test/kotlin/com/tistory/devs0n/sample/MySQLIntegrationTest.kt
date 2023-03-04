@@ -16,6 +16,7 @@ class MySQLIntegrationTest(
         mySQLEntityRepository.save(MySQLEntity("mysql"))
 
         mySQLEntityRepository.findAll().apply {
+            println(">>>>>> MySQL data $this")
             this shouldHaveSize 1
             this.first().name shouldBe "mysql"
         }
