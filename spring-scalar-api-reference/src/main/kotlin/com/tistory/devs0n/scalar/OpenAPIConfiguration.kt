@@ -9,14 +9,14 @@ import org.springframework.context.annotation.Bean
 import org.springframework.context.annotation.Configuration
 
 @Configuration
-class SwaggerConfiguration {
+class OpenAPIConfiguration {
     @Bean
     fun openApi(): OpenAPI {
         return OpenAPI()
             .info(Info().title("Scalar API Reference example API"))
             .components(
                 Components().addSecuritySchemes(
-                    "Bearer Token",
+                    "Access Token",
                     SecurityScheme()
                         .type(SecurityScheme.Type.HTTP)
                         .`in`(SecurityScheme.In.HEADER)
@@ -28,7 +28,7 @@ class SwaggerConfiguration {
             )
             .addSecurityItem(
                 SecurityRequirement()
-                    .addList("Bearer Token")
+                    .addList("Access Token")
             )
     }
 }
