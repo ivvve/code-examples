@@ -1,0 +1,6 @@
+springdoc:
+  swagger-ui:
+    enabled: false # you don't have to enable swagger ui if you don't use it
+
+  api-docs:
+    enabled: true # but you have to enable api-docs to generate OpenAPI json spec
