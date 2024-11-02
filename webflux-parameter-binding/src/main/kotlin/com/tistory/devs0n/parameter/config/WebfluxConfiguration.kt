@@ -11,7 +11,7 @@ import reactor.kotlin.core.publisher.toMono
 
 @Configuration
 class WebfluxConfiguration(
-    private val adapterRegistry: ReactiveAdapterRegistry,
+    adapterRegistry: ReactiveAdapterRegistry,
 ) : HandlerMethodArgumentResolverSupport(adapterRegistry) {
 
     override fun supportsParameter(parameter: MethodParameter): Boolean {
