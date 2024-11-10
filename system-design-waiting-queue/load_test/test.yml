@@ -1,0 +1,18 @@
+config:
+  target: http://localhost:3000
+  phases:
+    - duration: 60 # 총 테스트 시간(초)
+      arrivalRate: 500 # 초당 요청 수
+  defaults:
+    headers:
+      Content-Type: application/json
+  processor: './processor.mjs'
+
+scenarios:
+  - name: load test
+    flow:
+    - post:
+        url: /try-enter
+        beforeRequest: randomUserId
+        json:
+          userId: '{{ userId }}'

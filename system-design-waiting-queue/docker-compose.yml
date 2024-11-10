@@ -1,0 +1,6 @@
+services:
+  redis-standalone:
+    container_name: redis-standalone
+    image: redis:7.4-alpine
+    ports:
+      - "6379:6379"
