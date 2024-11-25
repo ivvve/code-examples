@@ -1,0 +1,32 @@
+### Get connectors
+GET localhost:8083/connectors
+
+
+### Add connector
+
+POST localhost:8083/connectors
+Content-Type: application/json
+
+{
+  "name": "service-db-event-connector",
+  "config": {
+    "connector.class": "io.debezium.connector.mysql.MySqlConnector",
+
+    "database.hostname": "mysql",
+    "database.port": "3306",
+    "database.user": "root",
+    "database.password": "root",
+
+    "database.server.id": "123456",
+    "database.server.name": "service-db",
+    "database.include.list": "playground",
+    "table.include.list": "playground.events",
+    "topic.prefix": "cdc",
+    "schema.history.internal.kafka.bootstrap.servers": "kafka-01:19092,kafka-02:19093,kafka-03:19094",
+    "schema.history.internal.kafka.topic": "schema-history.playground.events"
+  }
+}
+
+
+### Delete connector
+DELETE localhost:8083/connectors/order-event-connector

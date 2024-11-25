@@ -1,0 +1,9 @@
+CREATE TABLE orders
+(
+    id         BIGINT UNSIGNED PRIMARY KEY AUTO_INCREMENT,
+    product_id VARCHAR(50) NOT NULL,
+    quantity   INT UNSIGNED NOT NULL,
+    created_at DATETIME(2) NOT NULL,
+    updated_at DATETIME(2) NOT NULL
+) ENGINE = InnoDB
+  DEFAULT CHARSET = utf8mb4;
