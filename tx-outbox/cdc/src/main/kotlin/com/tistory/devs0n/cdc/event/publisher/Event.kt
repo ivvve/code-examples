@@ -29,7 +29,10 @@ class Event {
     constructor(partitionKey: String, topic: String, payload: Any) {
         this.partitionKey = partitionKey
         this.topic = topic
-        this.payload = payloadObjectMapper.writeValueAsString(payload)
+        this.payload = when (payload) {
+            is String -> payload
+            else -> payloadObjectMapper.writeValueAsString(payload)
+        }
     }
 
     companion object {

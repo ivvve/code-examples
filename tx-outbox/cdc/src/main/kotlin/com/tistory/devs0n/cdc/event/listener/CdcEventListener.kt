@@ -22,6 +22,10 @@ class CdcEventListener(
         this.logger.debug { "Raw CDC event message: \n${rawCdcEventMessage}" }
         val cdcEvent = objectMapper.readValue<Map<String, Any>>(rawCdcEventMessage)
         val cdcPayload = cdcEvent["payload"] as Map<String, Any>
+        // if not 'insert data' event
+        if (cdcPayload["op"] != "c") {
+            return
+        }
 
         // domain event
         val eventMessage = cdcPayload["after"] as LinkedHashMap<String, Any>
