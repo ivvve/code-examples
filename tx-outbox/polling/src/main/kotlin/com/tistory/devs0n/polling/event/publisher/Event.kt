@@ -3,7 +3,6 @@ package com.tistory.devs0n.polling.event.publisher
 import com.fasterxml.jackson.module.kotlin.jacksonObjectMapper
 import org.springframework.data.annotation.CreatedDate
 import org.springframework.data.annotation.Id
-import org.springframework.data.annotation.PersistenceCreator
 import org.springframework.data.relational.core.mapping.Column
 import org.springframework.data.relational.core.mapping.Table
 import java.time.LocalDateTime
