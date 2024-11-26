@@ -1,0 +1,8 @@
+### Place an order request
+POST localhost:8080/orders
+Content-Type: application/json
+
+{
+  "productId": "product-1",
+  "quantity": 30
+}
