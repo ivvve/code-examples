@@ -32,19 +32,14 @@ class Event {
     var createAt: LocalDateTime = LocalDateTime.now()
         private set // to prevent JDBC data mapping error
 
-    @PersistenceCreator
-    private constructor(status: EventStatus, partitionKey: String, topic: String, payload: String) {
-        this.status = status
-        this.partitionKey = partitionKey
-        this.topic = topic
-        this.payload = payload
-    }
-
     constructor(partitionKey: String, topic: String, payload: Any) {
         this.status = EventStatus.WAITING
         this.partitionKey = partitionKey
         this.topic = topic
-        this.payload = payloadObjectMapper.writeValueAsString(payload)
+        this.payload = when (payload) {
+            is String -> payload
+            else -> payloadObjectMapper.writeValueAsString(payload)
+        }
     }
 
     fun publish() {
