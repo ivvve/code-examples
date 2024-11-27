@@ -29,7 +29,7 @@ spring:
       key-serializer: org.apache.kafka.common.serialization.StringSerializer
       value-serializer: org.apache.kafka.common.serialization.StringSerializer
       properties:
-        linger.ms: 500
+        linger.ms: 100
 
 logging:
   level:
