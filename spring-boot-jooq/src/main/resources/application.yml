@@ -1,0 +1,23 @@
+spring:
+  threads:
+    virtual:
+      enabled: true
+
+  datasource:
+    url: jdbc:mysql://localhost:3306/playground
+    username: root
+    password: root
+    driver-class-name: com.mysql.cj.jdbc.Driver
+
+  flyway:
+    enabled: true
+    create-schemas: true
+    url: ${spring.datasource.url}
+    user: ${spring.datasource.username}
+    password: ${spring.datasource.password}
+    locations: classpath:db/migration
+
+logging:
+  level:
+    org.jooq.tools.LoggerListener: DEBUG
+    org.springframework.jdbc.support.JdbcTransactionManager: TRACE
