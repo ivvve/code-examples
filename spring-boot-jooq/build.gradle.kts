@@ -101,6 +101,7 @@ tasks.named("generateJooq") {
     lateinit var mySqlContainer: MySQLContainer<Nothing>
 
     doFirst {
+        // run MySQL container
         mySqlContainer = MySQLContainer<Nothing>("mysql:8.0").apply {
             withDatabaseName("playground")
             withUsername("root")
@@ -111,15 +112,18 @@ tasks.named("generateJooq") {
             start()
         }
 
+        // setup flyway plugin configuration
         flyway.url = mySqlContainer.jdbcUrl
         flyway.user = mySqlContainer.username
         flyway.password = mySqlContainer.password
 //        flyway.locations = arrayOf("classpath:db/migration") // <- cannot find the path
         flyway.locations = arrayOf("filesystem:src/main/resources/db/migration")
 
-        val fm = tasks.named("flywayMigrate").get()
-        fm.actions.forEach { it.execute(fm) }
+        // run `flywayMigration` task
+        val flywayMigrateTask = tasks.named("flywayMigrate").get()
+        flywayMigrateTask.actions.forEach { it.execute(flywayMigrateTask) }
 
+        // setup jooq plugin configuration
         jooq.configurations["main"].jooqConfiguration.apply {
             jdbc.url = mySqlContainer.jdbcUrl
             jdbc.user = mySqlContainer.username
@@ -130,6 +134,7 @@ tasks.named("generateJooq") {
     }
 
     doLast {
+        // shutdown MySQL container after code generation
         mySqlContainer.stop()
     }
 }
