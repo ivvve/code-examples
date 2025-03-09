@@ -1,0 +1,17 @@
+server:
+  shutdown: graceful
+
+spring:
+  threads:
+    virtual:
+      enabled: true
+
+  lifecycle:
+    timeout-per-shutdown-phase: 30000 # 30 seconds
+
+  task:
+    execution:
+      thread-name-prefix: async-task-
+      shutdown:
+        await-termination: true
+        await-termination-period: 30000 # 30 seconds
